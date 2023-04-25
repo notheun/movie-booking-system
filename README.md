@@ -3,4 +3,6 @@ Download ZIP or clone through CLI: <br/>
 run <br/> `$ git clone https://github.com/notheun/frontend-seats-function.git` <br/><br/>
 cd to root directory of the project and run <br/>`$ npm install` <br/>
 (you can ignore all vulnerabilities) <br/><br/>
-run <br/>`$ npm start`
+run <br/>`$ npm start`<br/><br/>
+CodeSandbox Link: <br/>
+https://codesandbox.io/s/test-seats-86yynr?file=/src/App.js
