@@ -1,0 +1,83 @@
+.chakraModal {
+  width: 35% !important;
+}
+.loginBox {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 2rem;
+  padding-top: 1rem;
+  padding-bottom: 15px;
+}
+.loginForm {
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+.forgotPasswordText {
+  font-size: 11px;
+  cursor: pointer;
+  letter-spacing: 1.1px;
+}
+
+.authBottomBox {
+  display: flex;
+  gap: 15px;
+}
+
+.authBottomText {
+  font-size: 11px;
+  letter-spacing: 1.1px;
+  cursor: pointer;
+}
+.loginForm input,
+select {
+  width: 100%;
+  border: none;
+  outline: none;
+  height: 40px;
+  padding: 0 7px;
+  font-family: var(--nunito);
+  background-color: #29292900;
+  background: #272727;
+  border: 0.3px solid rgb(43 43 43);
+  /* -webkit-box-shadow: 5px 5px 7px #1c1d1f, -5px -5px 7px #222527; */
+  box-shadow: -5px -3px 7px #1c1d1f, -5px -5px 7px #222527;
+}
+
+.loginForm button {
+  margin: 1rem 0;
+  width: 105px;
+  text-align: center;
+}
+.loginForm input::placeholder {
+  letter-spacing: 1.1px;
+}
+.loginHeader {
+  margin-bottom: 2rem;
+  text-align: center;
+  font-size: 1.6rem;
+  font-family: "Marhey", cursive !important;
+}
+.authBottomBox {
+  margin-top: 1rem;
+}
+.authBottomBox span:hover {
+  color: #ce6816;
+}
+.appName_loginModal {
+  color: #ce6816;
+}
+.loginHeaderInnerBox {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+@media screen and (max-width: 700px) {
+  .chakraModal {
+    width: 70% !important;
+  }
+}
