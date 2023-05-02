@@ -1,0 +1,102 @@
+.app_text {
+  font-size: 1.3rem;
+  padding-right: 8rem;
+  letter-spacing: 0.9px;
+  background: linear-gradient(
+    90deg,
+    rgb(218, 109, 20) 0%,
+    rgba(249, 211, 180, 0) 100%
+  );
+
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  width: fit-content;
+  font-family: var(--nunito);
+  font-weight: bold;
+}
+.navbar {
+  height: 75px;
+  display: flex;
+  align-items: center;
+
+  box-shadow: 5px 5px 7px #1c1d1f, -5px -5px 7px #222527;
+  border-bottom: 0.3px solid #151515;
+}
+.nav_left {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  flex: 3.5;
+  justify-content: center;
+  cursor: pointer;
+  border-bottom: 0.3px solid var(--border-color);
+}
+.nav_left h2 {
+  font-family: "Marhey", cursive;
+}
+.nav_right {
+  flex: 8.5;
+
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  justify-content: center;
+}
+.logo_text_first {
+  color: rgb(218, 109, 20) 0% !important;
+  font-family: "Marhey", cursive !important;
+}
+.nav_left img {
+  margin-right: 10px;
+}
+.nav_more_icon {
+  cursor: pointer;
+  display: none !important;
+}
+
+.registration_box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  gap: 10px;
+  position: absolute;
+  right: 10px;
+}
+.hrLine {
+  width: 16px;
+  height: 0.2px;
+  background-color: gray;
+}
+.hrLineBox {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.popoverRegistration {
+  width: 170px;
+  flex-direction: column;
+  background-color: #222527;
+  padding-bottom: 2rem;
+  display: flex !important;
+}
+
+@media screen and (max-width: 700px) {
+  .app_text {
+    padding-right: 3rem;
+  }
+  .nav_left h2 {
+    font-size: 19px;
+  }
+  .logo_text_first {
+    /* font-size: ; */
+  }
+  .nav_more_icon {
+    display: block !important;
+  }
+  .registration_box {
+    display: none;
+  }
+}
