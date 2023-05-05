@@ -1,13 +1,13 @@
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
-
+import React from "react";
+import ReactDOM from "react-dom/client";
 import App from "./App";
+import { ContextProvider } from "./context/context";
+import { BrowserRouter } from "react-router-dom"
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<ContextProvider >
+    <BrowserRouter>
+        <App />
+    </BrowserRouter>
+</ContextProvider>
 
-const rootElement = document.getElementById("root");
-const root = createRoot(rootElement);
-
-root.render(
-  <StrictMode>
-    <App />
-  </StrictMode>
 );
