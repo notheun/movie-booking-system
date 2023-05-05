@@ -2,8 +2,8 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const [loginState, setLoginState] = useState({
-    email: "",
+  const [LoginRequest, setLoginRequest] = useState({
+    username: "",
     password: "",
   });
   const navigate = useNavigate();
@@ -11,7 +11,7 @@ const Login = () => {
     const name = event.target.name;
     const value = event.target.value;
 
-    setLoginState((prev) => {
+    setLoginRequest((prev) => {
       return { ...prev, [name]: value };
     });
   };
@@ -19,7 +19,7 @@ const Login = () => {
   const handleLogin = async () => {
     console.log(
       "i am sending this data to the backend / server to store it into the database ",
-      loginState
+      LoginRequest
     );
 
     //  const response = await   fetch("https://filmProduction/api/v1/login",{
@@ -27,13 +27,11 @@ const Login = () => {
     //          headers: {
     //            "Content-Type": "application/json",
     //          },
-    //          body:JSON.stringify(loginState)
+    //          body:JSON.stringify(LoginRequest)
     //        })
 
     // {
-    //     firstName:"rajiv",
-    //     email:"",
-    //     lastName:"",
+    //     Username:"T1234",
     //     isAdmin:false
     // }
 
@@ -42,6 +40,20 @@ const Login = () => {
     // }else{
 
     // }
+
+    /* //use this to run
+    fetch('/login', {
+  method: 'POST',
+  body: JSON.stringify({ username, password }),
+  headers: {
+    'Content-Type': 'application/json'
+  }
+  })
+.then(response => response.text())
+.then(url => {
+  window.location.href = url;
+});
+    */
 
     navigate("/admin");
   };
@@ -65,10 +77,10 @@ const Login = () => {
       <div className="loginForm">
         <input
           required
-          placeholder="Email Address"
+          placeholder="Username"
           autoComplete="false"
-          type="email"
-          name="email"
+          type="text"
+          name="username"
           onChange={handleInputChange}
         />
 
