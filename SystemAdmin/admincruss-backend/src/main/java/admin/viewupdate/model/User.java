@@ -10,6 +10,7 @@ public class User {
 
 	private String username;
 	private String email;
+	private String password;
 	private String role;
 	private boolean isActive;
 
@@ -17,9 +18,10 @@ public class User {
 
 	}
 
-	public User(String username, String email, String role, boolean isActive) {
+	public User(String username, String email, String password, String role, boolean isActive) {
 		this.username = username;
 		this.email = email;
+		this.password = password;
 		this.role = role;
 		this.isActive = isActive;
 	}
@@ -42,6 +44,14 @@ public class User {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public String getRole() {
