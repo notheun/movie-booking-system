@@ -99,7 +99,7 @@ public class UserController {
 	public ResponseEntity<User> createUser(@RequestBody User user) {
 		try {
 			User newUser = userRepository.save(new User(user.getUsername(), 
-							user.getEmail(), user.getRole(), true));
+							user.getEmail(), user.getPassword(), user.getRole(), true));
 			
 			return new ResponseEntity<>(newUser, HttpStatus.CREATED);
 		} catch (Exception e) {
@@ -123,6 +123,7 @@ public class UserController {
 			User updateUser = userData.get();
 			updateUser.setUsername(userDetails.getUsername());
 			updateUser.setEmail(userDetails.getEmail());
+			updateUser.setPassword(userDetails.getPassword());
 			updateUser.setRole(userDetails.getRole());
 			updateUser.setIsActive(userDetails.getIsActive());
 			
