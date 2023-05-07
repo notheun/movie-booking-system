@@ -1,0 +1,14 @@
+.navbar {
+    height: 75px;
+    display: flex;
+    align-items: center;
+    box-shadow: 5px 5px 7px #1c1d1f, -5px -5px 7px #222527;
+    border-bottom: 0.3px solid #151515;
+}
+
+.navbar li {
+    display: inline;
+    list-style-type: none;
+    text-align: center;
+    padding: 16px;
+}
