@@ -12,6 +12,7 @@ export default function CreateUser() {
     const [id, setId] = useState(null);
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("abc123"); 
     const [role, setRole] = useState("staff");
     const [status, setStatus] = useState(true);
     const [isCreated, setIsCreated] = useState(false);
@@ -25,6 +26,10 @@ export default function CreateUser() {
         setEmail(e.target.value);
     }
 
+    const onPasswordChange = (e) => {
+        setPassword(e.target.value)
+    }
+
     const onRoleChange = (e) => {
         setRole(e.target.value);
     }
@@ -33,6 +38,7 @@ export default function CreateUser() {
         var data = {
             username: username,
             email: email,
+            password: password,
             role: role
         }
 
@@ -41,6 +47,7 @@ export default function CreateUser() {
                 setId(res.data.id);
                 setUsername(res.data.username);
                 setEmail(res.data.email);
+                setPassword(res.data.password);
                 setRole(res.data.role);
                 setStatus(res.data.status);
 
@@ -55,7 +62,8 @@ export default function CreateUser() {
         setId(null);
         setUsername("");
         setEmail("");
-        setRole("Staff");
+        setPassword("abc123");
+        setRole("staff");
         setStatus(true);
 
         setIsCreated(false);

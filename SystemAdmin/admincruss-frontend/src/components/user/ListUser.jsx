@@ -152,7 +152,7 @@ return (
             <table>
                 <tr>
                     <th>Username</th>
-                    <th>Status</th>
+                    <th>Role</th>
                 </tr>
                 {users && users.map((user, index) => (
                     <tr

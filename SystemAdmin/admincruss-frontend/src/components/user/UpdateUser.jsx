@@ -7,12 +7,14 @@ import "./user.css";
 
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import MenuItem from '@mui/material/MenuItem';
 
 function UpdateUser(props) {
     const [currentUser, setCurrentUser] = useState({
         id: null,
         username: "",
         email: "",
+        password: "",
         role: "",
         isActive: true
     });
@@ -21,6 +23,7 @@ function UpdateUser(props) {
         id: null,
         username: "",
         email: "",
+        password: "",
         role: "",
         isActive: true
     });
@@ -66,6 +69,7 @@ function UpdateUser(props) {
             id: currentUser.id,
             username: currentUser.username,
             email: currentUser.email,
+            password: currentUser.password,
             role: currentUser.role,
             isActive: status
         }
@@ -97,6 +101,11 @@ function UpdateUser(props) {
         getUser(props.router.params.id);
     }, [props.router.params.id]);
 
+    const allRoles = [
+        { value: "manager", label: "Manager" },
+        { value: "staff", label: "Staff"},
+    ];
+
     return (
         <div>  
             <div>
@@ -124,13 +133,17 @@ function UpdateUser(props) {
                         >
                         </TextField>
                         <TextField
-                            disabled
-                            autoComplete="off"
-                            InputLabelProps={{ shrink: true }}
-                            id="outlined-disabled"
+                            select
+                            id="outlined-select"
                             label="Role"
                             value={currentUser.role}
+                            onChange={onRoleChange}
                         >
+                            {allRoles.map((option) => (
+                                <MenuItem key={option.value} value={option.value}>
+                                    {option.label}
+                                </MenuItem>
+                            ))}
                         </TextField>
                     </div>
                     <div>
