@@ -84,14 +84,15 @@ return (
                             {" "}
                             {currentUser ? (currentUser.isActive ? "Active" : "Suspended") : ""}
                         </div>
-                    </div>
-                    {currentUser ? (
-                        <Link to={"/users/" + currentUser.id}>
-                            <Button variant="contained" color="primary">
-                                Update
-                            </Button>
-                        </Link>
-                    ) : ("")}        
+                        <br></br>
+                        {currentUser ? (
+                            <Link to={"/users/" + currentUser.id}>
+                                <Button variant="contained" color="primary">
+                                    Update
+                                </Button>
+                            </Link>
+                        ) : ("")} 
+                    </div>                          
                 </div >
             </div>            
         </div>
@@ -106,11 +107,36 @@ return (
             <Box sx={{ display: "flex", alignItems: "flex-end" }}>
             <TextField
                 id="input-with-sx"
+                sx={{
+                  }}
+                  InputLabelProps={{
+                    style: { color: 'gray'},
+                    sx: {
+                      color: 'gray'
+                    },
+                  }}
+                  InputProps={{
+                    sx: {
+                        '&:focus-within ' : {
+                        borderBottom: '1px solid gray!important',
+                        },
+                        '&:hover': {
+                        borderBottom: '1px solid white!important',
+                        },
+                    },
+                  }}
+                  inputProps={{
+                    sx: {
+                      color: 'gray',
+                      paddingLeft: '14px',
+                      fontSize: '18px',
+                    },
+                  }}
                 label="Search by Username"
                 variant="standard"
                 autoComplete="off"
                 value={searchUsername}
-                onChange={onSearchChange}
+                onChange={onSearchChange}          
             />
             <IconButton
                 type="button"
