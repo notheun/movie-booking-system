@@ -7,7 +7,7 @@
 port 3000
 
 ## Backend
-> \> mvn spring-boon:run <br>
+> \> mvn spring-boot:run <br>
 port 8080
 
 ## Database
