@@ -1,0 +1,4 @@
+admin\viewupdate\MainApplication.class
+admin\viewupdate\repository\UserRepository.class
+admin\viewupdate\controller\UserController.class
+admin\viewupdate\model\User.class
