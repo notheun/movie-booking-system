@@ -70,18 +70,9 @@ export default function ListCustomers() {
               </div>
               <div className="userdisplay-details">
                 <label>Loyalty Points:</label>{" "}
-                {currentCustomer ? currentCustomer.username : ""}
+                {currentCustomer ? currentCustomer.loyaltyPoints : ""}
               </div>
               <br></br>
-              {currentCustomer ? (
-                <Link to={"/login/admin/" + currentCustomer.id}>
-                  <Button variant="contained" color="primary">
-                    Update
-                  </Button>
-                </Link>
-              ) : (
-                ""
-              )}
             </div>
           </div>
         </div>

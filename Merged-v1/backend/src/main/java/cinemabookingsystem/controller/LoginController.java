@@ -32,7 +32,7 @@ public class LoginController {
     private ResponseEntity<?> registerUser(@RequestBody RegisterRequest registerRequest)
     {
         //creates a user
-        User user = new User(registerRequest.getUsername(),registerRequest.getPassword(), registerRequest.getEmail(), registerRequest.getRole(), registerRequest.isActive());
+        User user = new User(registerRequest.getUsername(), registerRequest.getEmail(), registerRequest.getPassword(), registerRequest.getRole(), registerRequest.isActive());
         try{
             //saves the usr to DB
             userRepo.save(user);

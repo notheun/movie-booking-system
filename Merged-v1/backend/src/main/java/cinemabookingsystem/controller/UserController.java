@@ -125,7 +125,7 @@ public class UserController {
 			updateUser.setEmail(userDetails.getEmail());
 			updateUser.setPassword(userDetails.getPassword());
 			updateUser.setRole(userDetails.getRole());
-			updateUser.setActive(userDetails.isActive());
+			updateUser.setIsActive(userDetails.getIsActive());
 			
 			return new ResponseEntity<>(userRepository.save(updateUser), HttpStatus.OK);
 		} else

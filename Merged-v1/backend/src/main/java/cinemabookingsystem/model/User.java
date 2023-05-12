@@ -20,7 +20,7 @@ public class User {
 	private String email;
 	private String password;
 	private String role;
-	private boolean isActive;
+	private boolean isActive = true;
 	private int birthYear;
 	private int birthMonth;
 	private int birthDay;
@@ -40,4 +40,11 @@ public class User {
 		this.seatPref = seatPref;
 	}
 
+	public boolean getIsActive() {
+		return isActive;
+	}
+
+	public void setIsActive(boolean isActive) {
+		this.isActive = isActive;
+	}
 }

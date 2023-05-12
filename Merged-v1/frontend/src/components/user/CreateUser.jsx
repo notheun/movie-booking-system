@@ -4,9 +4,6 @@ import { Link, useNavigate } from "react-router-dom";
 import UserService from "../../services/UserService";
 import "./user.css";
 
-import TextField from "@mui/material/TextField";
-import MenuItem from "@mui/material/MenuItem";
-
 export default function CreateUser() {
   const [isCreated, setIsCreated] = useState(false);
   const navigate = useNavigate();
@@ -163,7 +160,7 @@ export default function CreateUser() {
         });
         setIsCreated(true);
         alert("User created successfully");
-        navigate("/login/admin/users");
+        navigate("/login/admin");
       })
       .catch((e) => {
         console.log(e);
@@ -247,7 +244,7 @@ export default function CreateUser() {
           name="confirmPassword"
           id=""
         />
-
+        
         <button className="mainBtns" onClick={saveUser}>
           Create User
         </button>
