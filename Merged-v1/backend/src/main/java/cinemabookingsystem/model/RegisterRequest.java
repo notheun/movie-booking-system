@@ -15,4 +15,9 @@ public class RegisterRequest {
     private String password;
     private String role;
     private boolean isActive = true;
+    private int birthYear;
+	private int birthMonth;
+	private int birthDay;
+	private int loyaltyPoints = 0;
+	private String seatPref;
 }

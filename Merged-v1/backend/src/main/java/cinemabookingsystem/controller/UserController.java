@@ -98,8 +98,10 @@ public class UserController {
 	@PostMapping("/login/admin")
 	public ResponseEntity<User> createUser(@RequestBody User user) {
 		try {
-			User newUser = userRepository.save(new User(user.getUsername(), 
-							user.getEmail(), user.getPassword(), user.getRole(), true));
+			User newUser = userRepository.save(new User(user.getUsername(), user.getEmail(), 
+												user.getPassword(), user.getRole(), true, user.getBirthYear(), 
+												user.getBirthMonth(), user.getBirthDay(), user.getLoyaltyPoints(), 
+												user.getSeatPref()));
 			
 			return new ResponseEntity<>(newUser, HttpStatus.CREATED);
 		} catch (Exception e) {

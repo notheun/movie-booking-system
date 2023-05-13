@@ -27,7 +27,9 @@ public class User {
 	private int loyaltyPoints;
 	private String seatPref;
 
-	public User(String username, String email, String password, String role, boolean isActive) {
+	public User(String username, String email, String password, String role, boolean isActive,
+		int birthYear, int birthMonth, int birthDay, int loyaltyPoints, String seatPref) 
+	{
 		this.username = username;
 		this.email = email;
 		this.password = password;

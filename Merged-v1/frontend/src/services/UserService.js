@@ -5,12 +5,13 @@ import http from "./http";
 class UserService {
 
 /* --------------------------UserController---------------------------*/
+    /* ----- Admin -----*/
     getAllUsers() {
         return http.get("/login/admin");
     }
 
     getUserById(id) {
-        return http.get("/login/admin/" + id);
+        return http.get(`/login/admin/${id}`);
     }
 
     createUser(user) {
@@ -18,27 +19,28 @@ class UserService {
     }
 
     updateUser(id, userDetails) {
-        return http.put("/login/admin/" + id, userDetails);
+        return http.put(`/login/admin/${id}`, userDetails);
     }
 
     deleteUser(id) {
-        return http.delete("/login/admin/" + id);
+        return http.delete(`/login/admin/${id}`);
     }
 
     findByUsernameContainingIgnoreCase(username) {
-        return http.get("/login/admin?username=" + username);
+        return http.get(`/login/admin?username=${username}`);
     }
 
+    /* ----- Staff -----*/
     getAllCustomers() {
         return http.get("/login/staff");
     }
 
     findByRole(role) {
-        return http.get("/login/staff?role=" + role);
+        return http.get(`/login/staff?role=${role}`);
     }
 
     findByRoleAndUsernameContainingIgnoreCase(role, username) {
-        return http.get("/login/staff?role=" + role + "&username=" + username);
+        return http.get(`/login/staff?role=${role}&username=${username}`);
     }
 
     

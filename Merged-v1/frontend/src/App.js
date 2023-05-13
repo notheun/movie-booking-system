@@ -1,11 +1,10 @@
 import "./App.css";
 
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import ListUser from "./components/user/ListUser";
-import CreateUser from "./components/user/CreateUser";
-import UpdateUser from "./components/user/UpdateUser";
+import ListUser from "./components/admin/ListUser";
+import CreateUser from "./components/admin/CreateUser";
+import UpdateUser from "./components/admin/UpdateUser";
 import Home from "./components/home/Home";
-import Admin from "./components/admin/Admin";
 import Login from "./components/login/Login";
 import Register from "./components/register/Register";
 import ListCustomers from "./components/staff/ListCustomer";

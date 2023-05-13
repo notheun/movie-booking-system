@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import UserService from "../../services/UserService";
-import "../user/user.css";
+import "../admin/user.css";
 
 import SearchIcon from "@mui/icons-material/Search";
 import Box from "@mui/material/Box";

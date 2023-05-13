@@ -32,10 +32,13 @@ public class LoginController {
     private ResponseEntity<?> registerUser(@RequestBody RegisterRequest registerRequest)
     {
         //creates a user
-        User user = new User(registerRequest.getUsername(), registerRequest.getEmail(), registerRequest.getPassword(), registerRequest.getRole(), registerRequest.isActive());
+        User newUser = userRepo.save(new User(registerRequest.getUsername(), registerRequest.getEmail(), 
+        registerRequest.getPassword(), registerRequest.getRole(), true, registerRequest.getBirthYear(), 
+        registerRequest.getBirthMonth(), registerRequest.getBirthDay(), registerRequest.getLoyaltyPoints(), 
+        registerRequest.getSeatPref()));
         try{
             //saves the usr to DB
-            userRepo.save(user);
+            userRepo.save(newUser);
         }
         //returns a response
         catch (Exception err){
