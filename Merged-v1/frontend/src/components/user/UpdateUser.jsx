@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 import UserService from "../../services/UserService";
 import { UseRouter } from "../../common/UseRouter";
 import "./UpdateUser.css";
-
 import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
+import SignedOutNavbar from "../navbar/SignedOutNavbar";
 
 function UpdateUser(props) {
   const [currentUser, setCurrentUser] = useState({
@@ -106,6 +106,7 @@ function UpdateUser(props) {
 
   return (
     <div>
+      <SignedOutNavbar />
       <div className="userlist-cont">
         <h1>User Profile</h1>
         <form>

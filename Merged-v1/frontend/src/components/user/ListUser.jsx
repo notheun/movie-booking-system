@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import UserService from "../../services/UserService";
 import "./user.css";
-
+import SignedOutNavbar from "../navbar/SignedOutNavbar";
 import SearchIcon from "@mui/icons-material/Search";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
@@ -54,6 +54,7 @@ export default function ListUser() {
   return (
     <div>
       <div>
+        <SignedOutNavbar />
         <Link to={"/login/admin/createuser"}>
           <button className="mainBtns">Create a new User</button>
         </Link>

@@ -1,18 +1,19 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-
 import UserService from "../../services/UserService";
+import "./Register.css";
 
 const Register = () => {
   const [user, setUser] = useState({
     id: null,
     username: "",
     email: "",
+    dob: "",
     password: "",
     role: "customer",
     isActive: true,
     confirmPassword: "",
-  })
+  });
 
   const [isCreated, setIsCreated] = useState(false);
   const navigate = useNavigate();
@@ -22,9 +23,9 @@ const Register = () => {
     const value = e.target.value; // value of that input field
 
     setUser((prev) => {
-      return { 
-        ...prev, 
-        [name]: value 
+      return {
+        ...prev,
+        [name]: value,
       };
     });
   };
@@ -38,14 +39,15 @@ const Register = () => {
   };
 
   const isEmpty = () => {
-    if (user.username.trim() === "" ||
-        user.email.trim() === "" ||
-        user.password.trim() == "" ||
-        user.confirmPassword.trim() == "")
+    if (
+      user.username.trim() === "" ||
+      user.email.trim() === "" ||
+      user.password.trim() == "" ||
+      user.confirmPassword.trim() == ""
+    )
       return true;
-    else
-      return false;
-  }
+    else return false;
+  };
 
   const registerUser = () => {
     if (isEmpty()) {
@@ -55,7 +57,7 @@ const Register = () => {
 
     if (!isPasswordValid()) {
       alert("Password does not match");
-      return; 
+      return;
     }
 
     // if password matches, and fields not empty, createUser
@@ -71,7 +73,7 @@ const Register = () => {
           email: res.data.email,
           password: res.data.password,
           role: res.data.role,
-          isActive: res.data.isActive
+          isActive: res.data.isActive,
         });
         setIsCreated(true);
         alert("Registration successful");
@@ -88,6 +90,7 @@ const Register = () => {
       id: null,
       username: "",
       email: "",
+      dob: "",
       password: "",
       role: "",
       isActive: true,
@@ -130,7 +133,23 @@ const Register = () => {
           name="email"
           onChange={handleChangeInput}
         />
-
+        <select name="role" onChange={handleChangeInput}>
+          <option disabled selected>
+            Seat Preference
+          </option>
+          <option value="front">Front</option>
+          <option value="middle">Middle</option>
+          <option value="end">End</option>
+        </select>
+        <input
+          type="date"
+          value={user.dob}
+          id=""
+          name="dob"
+          min="1900-01-01"
+          max="2023-05-23"
+          onChange={handleChangeInput}
+        />
         <input
           required
           placeholder="Password"
@@ -143,7 +162,7 @@ const Register = () => {
 
         <input
           required
-          placeholder="confirm password"
+          placeholder="Confirm Password"
           autoComplete="false"
           onChange={handleChangeInput}
           type="password"

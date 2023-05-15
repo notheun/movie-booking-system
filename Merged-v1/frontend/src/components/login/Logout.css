@@ -1,0 +1,19 @@
+.loginHeaderInnerBox {
+  display: flex;
+  justify-content: center;
+}
+.topheader {
+  flex-direction: row;
+  display: flex;
+  justify-content: center;
+}
+.authBottomText {
+  font-size: 13px;
+  letter-spacing: 1.1px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+}
+.authBottomText:hover {
+  color: rgba(255, 137, 18, 0.801);
+}
