@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import "./Navbar.css";
+import "./navbar.css";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
 import { Link } from "react-router-dom";
 
@@ -24,7 +24,7 @@ function SignedOutNavbar() {
       </div>
       <div className="nav_right">
         <div className="registration_box">
-          <Link to={"/loggedout"}>
+          <Link to={"/logout"}>
             <button className="mainBtns">
               <LockOpenIcon className="navIcons" />
               <span>Logout</span>

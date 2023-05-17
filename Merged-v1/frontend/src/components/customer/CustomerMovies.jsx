@@ -1,30 +1,30 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
-import UserService from "../../services/UserService";
-import "../admin/user.css";
-
+import CustomerNavbar from "./CustomerNavbar";
 import SignedOutNavbar from "../navbar/SignedOutNavbar";
-import DropNavbar from "./StaffNavbar";
+
+import "./movie.css";
+//for movie search function
 import SearchIcon from "@mui/icons-material/Search";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import IconButton from "@mui/material/IconButton";
-import Button from "@mui/material/Button";
+import UserService from "../../services/UserService";
 
-export default function ListCustomers() {
+export default function Movie() {
+  //for Movie search function (need to change)
   const [customers, setCustomers] = useState([]);
   const [currentCustomer, setCurrentCustomer] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(-1);
-  const [searchUsername, setSearchUsername] = useState("");
+  const [searchMovie, setSearchMovie] = useState("");
 
   useEffect(() => {
     getCustomers();
   }, []);
 
   const onSearchChange = (e) => {
-    setSearchUsername(e.target.value);
-    searchByUsername(e.target.value);
+    setSearchMovie(e.target.value);
+    searchByMovie(e.target.value);
   };
 
   const getCustomers = () => {
@@ -43,7 +43,7 @@ export default function ListCustomers() {
     setCurrentIndex(index);
   };
 
-  const searchByUsername = (username) => {
+  const searchByMovie = (username) => {
     UserService.findByRoleAndUsernameContainingIgnoreCase("customer", username)
       .then((res) => {
         setCustomers(res.data);
@@ -54,37 +54,9 @@ export default function ListCustomers() {
   };
 
   return (
-    <div>
+    <>
       <SignedOutNavbar />
-      <DropNavbar />
-      <div
-        className="userpage-cont"
-        onClick={() => {
-          setCurrentCustomer(null);
-          setCurrentIndex(-1);
-        }}
-      >
-        <div className="topic">
-          <h1>View Loyalty Points</h1>
-        </div>
-        <div className="userdisplay-cont">
-          <div className="userfieldset-cont">
-            <h1>Customer Details</h1>
-            <div className="userdetails-cont">
-              <div className="userdisplay-details">
-                <label>Username:</label>{" "}
-                {currentCustomer ? currentCustomer.username : ""}
-              </div>
-              <div className="userdisplay-details">
-                <label>Loyalty Points:</label>{" "}
-                {currentCustomer ? currentCustomer.loyaltyPoints : ""}
-              </div>
-              <br></br>
-            </div>
-          </div>
-        </div>
-      </div>
-
+      <CustomerNavbar />
       <div className="searchBar">
         <Box sx={{ display: "flex", alignItems: "flex-end" }}>
           <TextField
@@ -114,40 +86,24 @@ export default function ListCustomers() {
                 fontSize: "18px",
               },
             }}
-            label="Search by Username"
+            label="Search by Movie"
             autoComplete="off"
-            value={searchUsername}
+            value={searchMovie}
             onChange={onSearchChange}
           />
           <IconButton
             type="button"
             color="warning"
             sx={{ p: "4px" }}
-            aria-label="Search by Username"
+            aria-label="Search by Movie"
           >
             <SearchIcon />
           </IconButton>
         </Box>
       </div>
-      <div className="userlist-cont">
-        <h1>All Customers</h1>
-        <table>
-          <tr>
-            <th>Username</th>
-            <th>Loyalty Points</th>
-          </tr>
-          {customers &&
-            customers.map((customer, index) => (
-              <tr
-                key={index}
-                className={index === currentIndex ? "active" : ""}
-                onClick={() => setCustDisplay(customer, index)}
-              >
-                <td>{customer.username}</td>
-              </tr>
-            ))}
-        </table>
-      </div>
-    </div>
+      <Link to={"/login/:id/:idmovie"}>
+        <button className="mainBtns">Book Now!</button>
+      </Link>
+    </>
   );
 }

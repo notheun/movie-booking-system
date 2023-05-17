@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import "./Navbar.css";
+import "./navbar.css";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
 import HowToRegIcon from "@mui/icons-material/HowToReg";
 import { Link } from "react-router-dom";

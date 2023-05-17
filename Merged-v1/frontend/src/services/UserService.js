@@ -4,13 +4,14 @@ import http from "./http";
 
 class UserService {
 
-/* --------------------------UserController---------------------------*/
+/* --------------------------UserController--------------------------- */
+    /* ----- Admin ----- */
     getAllUsers() {
         return http.get("/login/admin");
     }
 
     getUserById(id) {
-        return http.get("/login/admin/" + id);
+        return http.get(`/login/admin/${id}`);
     }
 
     createUser(user) {
@@ -18,38 +19,53 @@ class UserService {
     }
 
     updateUser(id, userDetails) {
-        return http.put("/login/admin/" + id, userDetails);
+        return http.put(`/login/admin/${id}`, userDetails);
     }
 
     deleteUser(id) {
-        return http.delete("/login/admin/" + id);
+        return http.delete(`/login/admin/${id}`);
     }
 
     findByUsernameContainingIgnoreCase(username) {
-        return http.get("/login/admin?username=" + username);
+        return http.get(`/login/admin?username=${username}`);
     }
 
+    /* ----- Manager ----- */
+
+    /* ----- Staff ----- */
     getAllCustomers() {
         return http.get("/login/staff");
     }
 
     findByRole(role) {
-        return http.get("/login/staff?role=" + role);
+        return http.get(`/login/staff?role=${role}`);
     }
 
     findByRoleAndUsernameContainingIgnoreCase(role, username) {
-        return http.get("/login/staff?role=" + role + "&username=" + username);
+        return http.get(`/login/staff?role=${role}&username=${username}`);
     }
 
+    /* ----- Customer ----- */
     
 
-/* --------------------------LoginController---------------------------*/
-    registerUser(registerRequest) {
-        return http.post("/auth/register", registerRequest)
+/* --------------------------ReviewsController--------------------------- */
+    createReviews(reviewBody, imdbId) {
+        const payload = {
+            reviewBody: reviewBody,
+            imdbId: imdbId
+        };
+
+        return http.post("/v1/reviews", payload);
     }
 
-    loginUser(loginRequest) {
-        return http.post("/auth/login", loginRequest);
+/* --------------------------MoviesController--------------------------- */
+    getAllMovies() {
+        return http.get("/login/manager");
+    }
+
+    findMovieByImdbId(imdbId) {
+        return http.post(`/login/manager/${imdbId}`);
+        return http.post("/login/staff");
     }
 }
 

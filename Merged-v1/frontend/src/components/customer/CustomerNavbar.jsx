@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import PersonAddAltOutlinedIcon from "@mui/icons-material/PersonAddAltOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import "./customernavbar.css";
 export default function CustomerNavbar() {
   return (
     <>
@@ -21,8 +22,10 @@ export default function CustomerNavbar() {
             Update Profile
           </button>
         </Link>
-        <Link to={"/login/:id/checkout"} className="wordings">
-          <ShoppingCartOutlinedIcon />
+        <Link to={"/login/:id/checkout"} className="wordings toLeft">
+          <div className="toLeft">
+            <ShoppingCartOutlinedIcon />
+          </div>
         </Link>
       </div>
     </>

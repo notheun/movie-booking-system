@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import UserService from "../../services/UserService";
+import LoginService from "../../services/LoginService";
 
 const Login = () => {
   const [LoginRequest, setLoginRequest] = useState({
@@ -23,7 +23,7 @@ const Login = () => {
 
   const loginUser = async() => {
     try {
-      const res = await UserService.loginUser(LoginRequest);
+      const res = await LoginService.loginUser(LoginRequest);
     
       if (res.data === "localhost:3000/login/admin") {
         navigate("/login/admin");
@@ -38,8 +38,14 @@ const Login = () => {
       }*/
     }
     catch (e) {
-        alert("Incorrect username or password");  
-        console.log(e);
+      if (e.response.status === 401) {  // UNAUTHORIZED
+        alert("Incorrect password or username");
+      } else if (e.response.status === 403) { // FORBIDDEN
+        alert("Account suspended");
+      } else {
+        alert("Something went wrong. Please try again later.");
+      }
+      console.log(e);
     }
   };
 

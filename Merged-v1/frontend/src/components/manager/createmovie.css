@@ -1,0 +1,58 @@
+.topic {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 2rem;
+    padding-top: 1rem;
+    padding-bottom: 15px;
+  }
+  /* .uploading {
+    border-radius: 8px;
+    border: 1px solid transparent;
+    padding: 0.6em 1.2em;
+    font-size: 1em;
+    font-weight: 500;
+    font-family: inherit;
+    background-color: #ce6816;
+    cursor: pointer;
+    color: white;
+    transition: border-color 0.25s;
+  } */
+  .movieBox {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 2rem;
+    padding-top: 1rem;
+    padding-bottom: 15px;
+  }
+  .movieForm {
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+  }
+  .movieForm input,
+  select {
+    width: 100%;
+    border: none;
+    outline: none;
+    height: 40px;
+    padding: 0 7px;
+    font-family: var(--nunito);
+    background-color: #29292900;
+    background: #272727;
+    border: 0.3px solid rgb(43 43 43);
+  }
+  
+  .movieForm button {
+    margin: 1rem 0;
+    width: 105px;
+    text-align: center;
+    background-color: #ce6816;
+    padding: 7px;
+  }
+  .movieForm input::placeholder {
+    letter-spacing: 1.1px;
+  }

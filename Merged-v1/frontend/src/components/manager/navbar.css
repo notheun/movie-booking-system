@@ -1,0 +1,59 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto+Slab:100,300,400,700");
+@import url("https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i");
+@import url("https://fonts.googleapis.com/css2?family=Baloo+2:wght@500&family=Marhey:wght@500;600&family=Nunito+Sans:wght@300&family=Poppins&display=swap");
+
+.topnav {
+  font-family: var(--font-roboto);
+  background-color: #333;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+/* Style the links inside the navigation bar */
+.wordings .dropdown {
+  font-family: var(--font-roboto);
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  height: 100%;
+  font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.wordings:hover .dropdown:hover .dropbtn {
+  background-color: #ce6816;
+  color: black;
+}
+
+/* Add a color to the active/current link */
+.wordings.active {
+  background-color: #ce6816;
+  color: white;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}

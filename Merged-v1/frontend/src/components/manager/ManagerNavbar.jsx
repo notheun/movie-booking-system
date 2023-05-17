@@ -16,10 +16,10 @@ export default function ManagerNavbar() {
               <a href="editMovies">Edit Movies</a>
             </Link>
             <Link to={"/login/manager/createmovietheatre"} className="wordings">
-              <a href="createMovies">Create Movies theatre</a>
+              <a href="createMoviesTheatre">Create Movies theatre</a>
             </Link>
-            <Link to={"/login/manager/viewmovietheatre"} className="wordings">
-              <a href="createMovies">View Movies theatre</a>
+            <Link to={"/login/manager/editmovietheatre"} className="wordings">
+              <a href="editMoviesTheatre">Edit Movies theatre</a>
             </Link>
           </div>
         </div>
@@ -29,8 +29,8 @@ export default function ManagerNavbar() {
             <Link to={"/login/manager/createfb"} className="wordings">
               <a href="createfb">Create F&B</a>
             </Link>
-            <Link to={"/login/manager/viewfb"} className="wordings">
-              <a href="viewfb">View F&B</a>
+            <Link to={"/login/manager/editfb"} className="wordings">
+              <a href="editfb">Edit F&B</a>
             </Link>
           </div>
         </div>
