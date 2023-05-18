@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import SignedOutNavbar from "../navbar/SignedOutNavbar";
 import "../admin/user.css";
-import DropNavbar from "./StaffNavbar";
+import StaffNavBar from "./StaffNavbar";
 
 export default function StaffRewards() {
   //Function to get the data of movies
@@ -13,7 +13,7 @@ export default function StaffRewards() {
   return (
     <div>
       <SignedOutNavbar />
-      <DropNavbar />
+      <StaffNavBar />
       <div className="topic">
         <h1>Rewards</h1>
       </div>

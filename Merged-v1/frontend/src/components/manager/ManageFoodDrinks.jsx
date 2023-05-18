@@ -1,54 +1,70 @@
-import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
 
-import FoodDrinksService from "../../services/FoodDrinkService";
-import UploadImage from "../image/UploadImage";
-import ManagerNavbar from "./ManagerNavbar";
-import SignedOutNavbar from "../navbar/SignedOutNavbar";
+import FoodDrinkService from '../../services/FoodDrinkService';
+import ImageService from '../../services/ImageService';
 
 const ManageFoodDrinks = () => {
-  const [foodDrinks, setFoodDrinks] = useState([]);
+    const [items, setItems] = useState([]);
 
-  useEffect(() => {
-    fetchFoodDrinks();
-  });
+    useEffect(() => {
+        getItem();
+    }, []);
 
-  const fetchFoodDrinks = () => {
-    FoodDrinksService.viewFoodDrinks()
-      .then((res) => {
-        setFoodDrinks(res.data);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  };
-  //Function to delete fb
-  const deleteFB = () => {
-    return;
-  };
-  return (
-    <div>
-      <SignedOutNavbar />
-      <ManagerNavbar />
+    const getItem = () => {
+        FoodDrinkService.viewFoodDrinks()
+        .then((res) => {
+            setItems(res.data);
+        })
+        .catch((e) => {
+            console.log(e);
+        });
+    };
 
-      <div className="loginHeader">
-        <h3>Food and Drinks</h3>
-      </div>
-      <ul>
-        {foodDrinks.map((item) => {
-          <li key={item.id}>
-            <p>Item Number: {item.itemNumber}</p>
-            <p>Description: {item.description}</p>
-            <p>Price: {item.price}</p>
-            <img src={item.poster} alt="Item Poster" />
-          </li>;
-        })}
-      </ul>
-      <button className="mainBtns" onClick={deleteFB}>
-        Delete
-      </button>
-    </div>
-  );
+    const deleteItem = (itemNumber) => {
+        FoodDrinkService.deleteFoodDrinks(itemNumber)
+            .then(() => {
+                alert(`Food and drinks item ${itemNumber} deleted successfully`);
+                getItem();
+                // delete the image file from the server
+                const imageURL = items.find(item => item.itemNumber === itemNumber).poster;
+                if (imageURL) {
+                    const filename = imageURL.split("/").pop();
+                    ImageService.delete(filename)
+                        .then(() => {
+                            console.log("Image deleted successfully");
+                            // re-render new list
+                            getItem();
+                        })
+                        .catch((error) => {
+                            console.log("Failed to delete image:", error);
+                        });
+                } else {
+                    console.log("No image associated with the item.");
+                    // re-render new list
+                    getItem();
+                }
+            })
+            .catch((error) => {
+                alert("Failed to delete food and drinks item:", error);
+            });
+    };
+    
+
+    return (
+        <div>
+            {items.map((item, index) => (
+                <div key={index}>
+                    <img src={item.poster} alt={`${item.description}`} />
+                    <h3>Item: {item.itemNumber}</h3>
+                    <p>Description: {item.description}</p>
+                    <p>Price: ${item.price}</p>
+                    <button onClick={() => deleteItem(item.itemNumber)}>
+                        Delete
+                    </button>
+                </div>
+            ))}
+        </div>
+    );
 };
 
 export default ManageFoodDrinks;

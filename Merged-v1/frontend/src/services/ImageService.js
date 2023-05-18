@@ -55,8 +55,8 @@ class ImageService {
     });
   }
 
-  getImages() {
-    return http.get("image/files");
+  delete(filename) {
+    return http.delete(`image/files/${filename}`);
   }
 }
 

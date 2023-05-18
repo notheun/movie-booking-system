@@ -1,0 +1,38 @@
+.profileBox {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 2rem;
+  padding-top: 1rem;
+  padding-bottom: 15px;
+}
+.profileForm {
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+.profileForm input,
+select {
+  width: 100%;
+  border: none;
+  outline: none;
+  height: 40px;
+  padding: 0 7px;
+  font-family: var(--nunito);
+  background-color: #29292900;
+  background: #272727;
+  border: 0.3px solid rgb(43 43 43);
+}
+
+.profileForm button {
+  margin: 1rem 0;
+  width: 105px;
+  text-align: center;
+  background-color: #ce6816;
+  padding: 7px;
+}
+.profileForm input::placeholder {
+  letter-spacing: 1.1px;
+}

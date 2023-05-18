@@ -37,6 +37,7 @@ import CustomerTicketID from "./components/customer/CustomerTicketID";
 import CustomerMovies from "./components/customer/CustomerMovies";
 import UpdateProfile from "./components/customer/UpdateProfile";
 
+
 function App() {
   return (
     <div className="app">
@@ -48,113 +49,40 @@ function App() {
           <Route exact path="/register" element={<Register />}></Route>
 
           <Route exact path="/login/admin" element={<ListUser />}></Route>
-          <Route
-            exact
-            path="/login/admin/createuser"
-            element={<CreateUser />}
-          ></Route>
+          <Route exact path="/login/admin/createuser" element={<CreateUser />}></Route>
           <Route exact path="/login/admin/:id" element={<UpdateUser />}></Route>
 
           <Route exact path="/login/manager" element={<ManageMovie />}></Route>
-          <Route
-            exact
-            path="/login/manager/createmovies"
-            element={<CreateMovies />}
-          ></Route>
-          <Route
-            exact
-            path="/login/manager/createfb"
-            element={<CreateFoodDrinks />}
-          ></Route>
-          <Route
-            exact
-            path="/login/manager/editfb"
-            element={<ManageFoodDrinks />}
-          ></Route>
-          <Route
-            exact
-            path="/login/manager/createmovietheatre"
-            element={<CreateTheatre />}
-          ></Route>
-          <Route
-            exact
-            path="/login/manager/editmovietheatre"
-            element={<ManageTheatre />}
-          ></Route>
-          <Route
-            exact
-            path="/login/manager/report"
-            element={<Report />}
-          ></Route>
+          <Route exact path="/login/manager/createmovies" element={<CreateMovies />}></Route>
+          <Route exact path="/login/manager/createfb" element={<CreateFoodDrinks />}></Route>
+          <Route exact path="/login/manager/editfb" element={<ManageFoodDrinks />}></Route>
+          <Route exact path="/login/manager/createmovietheatre" element={<CreateTheatre />}></Route>
+          <Route exact path="/login/manager/editmovietheatre" element={<ManageTheatre />}></Route>
+          <Route exact path="/login/manager/report" element={<Report />}></Route>
 
           <Route exact path="/login/staff" element={<StaffMovies />}></Route>
-          <Route
-            exact
-            path="/login/staff/checkloyaltypoints"
-            element={<ListCustomers />}
-          ></Route>
-          <Route
-            exact
-            path="/login/staff/checkloyaltypoints/rewards"
-            element={<StaffRewards />}
-          ></Route>
-          <Route
-            exact
-            path="/login/staff/:movieid"
-            element={<StaffBookMovie />}
-          ></Route>
-          <Route
-            exact
-            path="/login/staff/viewfb"
-            element={<StaffFoodBev />}
-          ></Route>
-          <Route
-            exact
-            path="/login/staff/checkout"
-            element={<StaffCheckout />}
-          ></Route>
-          <Route
-            exact
-            path="/login/staff/checkout/ticketid"
-            element={<StaffTicketID />}
-          ></Route>
-          <Route
-            exact
-            path="/login/staff/checkticket"
-            element={<CheckTicket />}
-          ></Route>
+          <Route exact path="/login/staff/checkloyaltypoints" element={<ListCustomers />}></Route>
+          <Route exact path="/login/staff/checkloyaltypoints/rewards" element={<StaffRewards />}></Route>
+          <Route exact path="/login/staff/:movieid" element={<StaffBookMovie />}></Route>
+          <Route exact path="/login/staff/viewfb" element={<StaffFoodBev />}></Route>
+          <Route exact path="/login/staff/checkout" element={<StaffCheckout />}></Route>
+          <Route exact path="/login/staff/checkout/ticketid" element={<StaffTicketID />}></Route>
+          <Route exact path="/login/staff/checkticket" element={<CheckTicket />}></Route>
 
+          
           <Route exact path="/:id" element={<CustomerMovies />}></Route>
           <Route exact path="/:id/viewfb" element={<CustomerFoodBev />}></Route>
-          <Route
-            exact
-            path="/:id/rewards"
-            element={<CustomerRewards />}
-          ></Route>
-          <Route
-            exact
-            path="/:id/:movieid"
-            element={<CustomerBookMovie />}
-          ></Route>
-          <Route
-            exact
-            path="/:id/checkout"
-            element={<CustomerCheckout />}
-          ></Route>
-          <Route
-            exact
-            path="/:id/checkout/ticketid"
-            element={<CustomerTicketID />}
-          ></Route>
-          <Route
-            exact
-            path="/:id/updateprofile"
-            element={<UpdateProfile />}
-          ></Route>
+          <Route exact path="/:id/rewards" element={<CustomerRewards />}></Route>
+          <Route exact path="/:id/:movieid" element={<CustomerBookMovie />}></Route>
+          <Route exact path="/:id/checkout" element={<CustomerCheckout />}></Route>
+          <Route exact path="/:id/checkout/ticketid" element={<CustomerTicketID />}></Route>
+          <Route exact path="/:id/updateprofile" element={<UpdateProfile />}></Route>
+          
         </Routes>
       </Router>
     </div>
   );
-}
+};
 
 export default App;
+

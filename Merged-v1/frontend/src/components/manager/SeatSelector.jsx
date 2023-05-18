@@ -1,24 +1,7 @@
 import React, { useState } from "react";
-import "./seats.css";
+import "./css/seats.css";
 
 export default function SeatSelector({ numRows, numCols }) {
-  const [selectedSeats, setSelectedSeats] = useState([]);
-  const [avail, setAvail] = useState(true);
-
-  function handleSeatClick(row, col) {
-    const newSelectedSeats = [...selectedSeats];
-    const seatIndex = newSelectedSeats.findIndex(
-      (selectedSeat) => selectedSeat.row === row && selectedSeat.col === col
-    );
-    if (seatIndex > -1) {
-      newSelectedSeats.splice(seatIndex, 1);
-      setSelectedSeats(newSelectedSeats);
-    } else {
-      newSelectedSeats.push({ row, col });
-      setSelectedSeats(newSelectedSeats);
-    }
-  }
-
   const convertNum = (num) => {
     if (num < 1 || num > 26 || typeof num !== "number") {
       return -1;
@@ -35,19 +18,7 @@ export default function SeatSelector({ numRows, numCols }) {
       seats.push(
         <button
           key={seat}
-          onClick={() => handleSeatClick(i, seat)}
-          style={{
-            backgroundColor: selectedSeats.some(
-              (selectedSeat) =>
-                selectedSeat.row === i && selectedSeat.col === seat
-            )
-              ? avail
-                ? "red" // current cust click
-                : "green" // avail
-              : avail
-              ? "green"
-              : "gray", // for future use - represent seats taken by other cust
-          }}
+          style={{ backgroundColor: "green" }}
         >
           {seat}
         </button>
@@ -70,13 +41,6 @@ export default function SeatSelector({ numRows, numCols }) {
         <div>{rows}</div>
         <br></br>
       </div>
-      {/* <div className="middle">
-        Selected seats:{" "}
-        {selectedSeats
-          .map((seat) => `${convertNum(seat.row)}${seat.col}`)
-          .join(", ")}
-        <br></br>
-      </div> */}
     </div>
   );
 }

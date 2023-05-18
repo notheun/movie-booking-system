@@ -44,12 +44,15 @@ export default function ListMovie() {
 }
 */
 
+
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+
 import SignedOutNavbar from "../navbar/SignedOutNavbar";
-import UserService from "../../services/UserService";
+import StaffNavBar from "./StaffNavbar";
+
 import "../admin/user.css";
-import DropNavbar from "./StaffNavbar";
+
 import SearchIcon from "@mui/icons-material/Search";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
@@ -72,7 +75,7 @@ export default function ListMovie() {
   return (
     <div>
       <SignedOutNavbar />
-      <DropNavbar />
+      <StaffNavBar />
       <div className="topic">
         <h1>Movies</h1>
       </div>

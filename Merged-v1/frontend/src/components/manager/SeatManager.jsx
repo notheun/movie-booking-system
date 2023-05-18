@@ -1,30 +1,39 @@
 import React, { useState, useEffect } from "react";
 
+import "./css/seats.css";
+
 export default function SeatManager(props) {
-  const [numSeat, setNumSeat] = useState({
+
+  const [room, setRoom] = useState({
+    roomNumber: "",
     numRows: "10",
     numCols: "10",
   });
 
   useEffect(() => {
     if (props.onChange) {
-      props.onChange(numSeat);
+      props.onChange(room);
     }
-  }, [numSeat, props.onChange]);
+  }, [room, props.onChange]);
 
-  function handleChange(event) {
-    const { name, value } = event.target;
-
-    setNumSeat(() => {
+  function handleChange(e) {
+    const { name, value } = e.target;
+  
+    setRoom((prevRoom) => {
       if (name === "numRows") {
         return {
+          ...prevRoom,
           numRows: parseInt(value),
-          numCols: numSeat.numCols,
         };
       } else if (name === "numCols") {
         return {
-          numRows: numSeat.numRows,
+          ...prevRoom,
           numCols: parseInt(value),
+        };
+      } else {
+        return {
+          ...prevRoom,
+          roomNumber: value,
         };
       }
     });
@@ -32,34 +41,46 @@ export default function SeatManager(props) {
 
   return (
     <div>
-      <div className="overall">
-        {/*<p>test change: {numSeat.numRows}, {numSeat.numCols}</p>*/}
-        <label for="numRows">Number of rows: </label>
-        <input
-          type="number"
-          min="1"
-          max="26"
-          id="numRows"
-          name="numRows"
-          onChange={handleChange}
-          value={numSeat.numRows}
-          onKeyDown={(e) => e.preventDefault()}
-          style={{ caretColor: "transparent" }}
-        ></input>
-        <br></br>
-        <br></br>
-        <label for="numCols">Number of columns: </label>
-        <input
-          type="number"
-          min="1"
-          max="50"
-          id="numCols"
-          name="numCols"
-          onChange={handleChange}
-          value={numSeat.numCols}
-          onKeyDown={(e) => e.preventDefault()}
-          style={{ caretColor: "transparent" }}
-        ></input>
+        <div className="topic">
+            <h1>Create a new Movie Theatre</h1>
+        </div>
+          <div className="loginBox">
+              <div className="loginForm">
+                  <input
+                      required
+                      placeholder="Theatre Number: 1/2/3"
+                      autoComplete="false"
+                      type="number"
+                      name="roomNumber"
+                      onChange={handleChange}
+                  />
+              </div>
+          </div>
+        <div className="overall">
+          <label for="numRows">Number of rows: </label>
+          <input
+            type="number"
+            min="1"
+            max="26"
+            id="numRows"
+            name="numRows"
+            onChange={handleChange}
+            value={room.numRows}
+            onKeyDown={(e) => e.preventDefault()}
+          ></input>
+          <br></br>
+          <br></br>
+          <label for="numCols">Number of columns:</label>
+          <input
+            type="number"
+            min="1"
+            max="40"
+            id="numCols"
+            name="numCols"
+            onChange={handleChange}
+            value={room.numCols}
+            onKeyDown={(e) => e.preventDefault()}
+          ></input>
       </div>
     </div>
   );

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import CustomerNavbar from "./CustomerNavbar";
 import SignedOutNavbar from "../navbar/SignedOutNavbar";
 
-import "./movie.css";
+import "./css/movie.css";
 //for movie search function
 import SearchIcon from "@mui/icons-material/Search";
 import Box from "@mui/material/Box";

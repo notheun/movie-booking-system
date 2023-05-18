@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+
 import ManagerNavbar from "./ManagerNavbar";
 import SignedOutNavbar from "../navbar/SignedOutNavbar";
 
-//movie search function (File to Edit)
 import UserService from "../../services/UserService";
-import "./ManageMovie.css";
+
+import "./css/managemovie.css";
+
 import SearchIcon from "@mui/icons-material/Search";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
@@ -41,11 +43,6 @@ export default function ManageMovie() {
       .catch((e) => {
         console.log("User not found");
       });
-  };
-
-  //Function to Delete Movie
-  const RemoveMovie = () => {
-    return;
   };
   return (
     <div>
@@ -99,9 +96,17 @@ export default function ManageMovie() {
           </IconButton>
         </Box>
       </div>
-      <button className="mainBtns" onClick={RemoveMovie}>
-        Delete Movie
-      </button>
     </div>
   );
 }
+
+// import ManagerNavbar from "./ManagerNavbar";
+// import SignedOutNavbar from "../navbar/SignedOutNavbar";
+// export default function EditMovie() {
+//   return (
+//     <div>
+//       <SignedOutNavbar />
+//       <ManagerNavbar />
+//     </div>
+//   );
+// }

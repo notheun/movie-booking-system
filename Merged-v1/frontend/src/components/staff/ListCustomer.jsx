@@ -5,7 +5,7 @@ import UserService from "../../services/UserService";
 import "../admin/user.css";
 
 import SignedOutNavbar from "../navbar/SignedOutNavbar";
-import DropNavbar from "./StaffNavbar";
+import StaffNavBar from "./StaffNavbar";
 import SearchIcon from "@mui/icons-material/Search";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
@@ -56,7 +56,7 @@ export default function ListCustomers() {
   return (
     <div>
       <SignedOutNavbar />
-      <DropNavbar />
+      <StaffNavBar />
       <div
         className="userpage-cont"
         onClick={() => {
@@ -144,6 +144,7 @@ export default function ListCustomers() {
                 onClick={() => setCustDisplay(customer, index)}
               >
                 <td>{customer.username}</td>
+                <td>{customer.loyaltyPoints}</td>
               </tr>
             ))}
         </table>

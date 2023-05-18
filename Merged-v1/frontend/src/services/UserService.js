@@ -34,15 +34,15 @@ class UserService {
 
     /* ----- Staff ----- */
     getAllCustomers() {
-        return http.get("/login/staff");
+        return http.get("/login/staff/lp");
     }
 
     findByRole(role) {
-        return http.get(`/login/staff?role=${role}`);
+        return http.get(`/login/staff/lp?role=${role}`);
     }
 
     findByRoleAndUsernameContainingIgnoreCase(role, username) {
-        return http.get(`/login/staff?role=${role}&username=${username}`);
+        return http.get(`/login/staff/lp?role=${role}&username=${username}`);
     }
 
     /* ----- Customer ----- */
