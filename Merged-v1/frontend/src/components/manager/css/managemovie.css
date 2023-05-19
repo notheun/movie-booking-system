@@ -1,141 +1,141 @@
 .userpage-cont {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    padding: 2rem;
-    padding-top: 1rem;
-    padding-bottom: 15px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 2rem;
+  padding-top: 1rem;
+  padding-bottom: 15px;
 }
 
 .userdisplay-cont {
-    /* background-color: #ffffff; */
-    margin: 4vh auto;
-    width: 80vw;
-    height: 30vh;
-    position: relative;
+  /* background-color: #ffffff; */
+  margin: 4vh auto;
+  width: 80vw;
+  height: 30vh;
+  position: relative;
 }
 
 .userfieldset-cont {
-    border: 1px solid #ce6816;
-    background-color: white;
-    margin: 5%;
-    height: 80%;
-    width: 90%;
-    position: absolute;
+  border: 1px solid #ce6816;
+  background-color: white;
+  margin: 5%;
+  height: 80%;
+  width: 90%;
+  position: absolute;
 }
 
 .userfieldset-cont h1 {
-    color: #000000;
-    position: inherit;
-    font-size: 2.5vh;
-    top: -2vh;
-    left: 2vw;
-    padding: 0.4vh 2vw;
-    background: #ffffff;
+  color: #000000;
+  position: inherit;
+  font-size: 2.5vh;
+  top: -2vh;
+  left: 2vw;
+  padding: 0.4vh 2vw;
+  background: #ffffff;
 }
 
 .userdetails-cont {
-    position: relative;
-    width: 80%;
-    height: 60%;
-    margin: 5vh auto;
+  position: relative;
+  width: 80%;
+  height: 60%;
+  margin: 5vh auto;
 }
 
 .userdisplay-details {
-    position: relative;
-    color: #000000;
-    font-size: 15px;
-    margin: 1vh 0;
+  position: relative;
+  color: #000000;
+  font-size: 15px;
+  margin: 1vh 0;
 }
 
 .searchBar {
-    width: 50%;
-    margin: auto;
+  width: 50%;
+  margin: auto;
 }
 
 .mainBtns {
-    min-width: 80px;
-    height: 35px;
-    text-transform: capitalize;
-    color: gray;
-    font-family: var(--nunito);
-    font-size: 15px;
-    letter-spacing: 1.1px;
-    border-radius: 2px;
-    background: #ce6816;
-    align-items: center;
-    display: flex;
-    gap: 10px;
-    cursor: pointer;
-    color: rgba(255, 255, 255, 0.801);
-    transition: all 0.3s ease;
-    -webkit-box-shadow: 5px 5px 7px #1c1d1f, -5px -5px 7px #222527;
-    box-shadow: 5px 5px 7px #1c1d1f, -5px -5px 7px #222527;
-    display: flex;
-    justify-content: center;
-    margin-top: 1rem;
+  min-width: 80px;
+  height: 35px;
+  text-transform: capitalize;
+  color: gray;
+  font-family: var(--nunito);
+  font-size: 15px;
+  letter-spacing: 1.1px;
+  border-radius: 2px;
+  background: #ce6816;
+  align-items: center;
+  display: flex;
+  gap: 10px;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.801);
+  transition: all 0.3s ease;
+  -webkit-box-shadow: 5px 5px 7px #1c1d1f, -5px -5px 7px #222527;
+  box-shadow: 5px 5px 7px #1c1d1f, -5px -5px 7px #222527;
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
 }
 
 .mainBtns span {
-    color: #e7e7e7 !important;
+  color: #e7e7e7 !important;
 }
 
 .mainBtns:hover {
-    transform: scale(1.1);
+  transform: scale(1.1);
 }
 
 .authBottomText {
-    font-size: 13px;
-    letter-spacing: 1.1px;
-    cursor: pointer;
+  font-size: 13px;
+  letter-spacing: 1.1px;
+  cursor: pointer;
 }
 
 .authBottomText:hover {
-    color: rgba(255, 137, 18, 0.801);
+  color: rgba(255, 137, 18, 0.801);
 }
 
 .editTextField {
-    background-color: #ababab !important;
-    margin-top: 100 px !important;
+  background-color: #ababab !important;
+  margin-top: 100 px !important;
 }
 
 .userlist-cont {
-    color: grey;
-    align-items: center;
-    display: flex;
-    flex-direction: column;
+  color: grey;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
 }
 
 .searchBar {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 1rem !important;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem !important;
 }
 
 .createNewUser {
-    display: flex !important;
-    align-items: center !important;
-    padding-left: 20rem !important;
-    padding-top: 1rem !important;
+  display: flex !important;
+  align-items: center !important;
+  padding-left: 20rem !important;
+  padding-top: 1rem !important;
 }
 
 .buttonForCreate {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    padding: 2rem;
-    padding-top: 1rem;
-    padding-bottom: 15px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 2rem;
+  padding-top: 1rem;
+  padding-bottom: 15px;
 }
 
 .statusOfUser {
-    color: #ce6816;
+  color: #ce6816;
 }
 
 .buttonBottomUserProfile {
-    float: left;
-    flex-direction: row;
-    display: flex;
-    justify-content: center;
+  float: left;
+  flex-direction: row;
+  display: flex;
+  justify-content: center;
 }

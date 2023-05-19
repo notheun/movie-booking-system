@@ -6,14 +6,7 @@ import "../admin/user.css";
 import "./css/staffcheckout.css";
 
 export default function StaffTicketID() {
-  //able to generate random ticketID, However the ticketID is not saved into backend.
-  const [num, setNum] = useState(0);
-  function randomNumberInRange(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  }
-  useEffect(() => {
-    setNum(randomNumberInRange(11111, 99999));
-  }, []);
+  //need to include a function to generate random number for the ticket ID.
   return (
     <div>
       <SignedOutNavbar />
@@ -28,7 +21,7 @@ export default function StaffTicketID() {
         <h2>For rewards redeemption, please show this to our counter staff.</h2>
         <br></br>
         {/* Include the function here that will generate random ticket ID */}
-        <h1>Ticket ID: {num}</h1>
+        <h1>Ticket ID: 12345</h1>
         <br></br>
         <h3>Thank you.</h3>
       </div>

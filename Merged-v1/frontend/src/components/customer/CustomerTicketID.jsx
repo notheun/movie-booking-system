@@ -33,7 +33,7 @@ export default function CustomerTicketID() {
       </div>
       {/* return everything that was checked out */}
       <div className="loginBox">
-        <Link to="/login/staff">
+        <Link to="/:id">
           <button className="mainBtns">Return Home</button>
         </Link>
       </div>

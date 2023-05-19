@@ -20,8 +20,14 @@ export default function UpdateProfile() {
   const handleChangeInput = (e) => {
     const name = e.target.name;
     const value = e.target.value;
-  };
 
+    setUser((prev) => {
+      return {
+        ...prev,
+        [name]: value,
+      };
+    });
+  };
   const updatechanges = () => {
     return;
   };
@@ -60,9 +66,8 @@ export default function UpdateProfile() {
                 onChange={handleChangeInput}
                 value={user.seatPref}
               >
-                <option disabled selected>
-                  Seat Preference
-                </option>
+                {/* <option disabled selected> */}
+                <option hidden>Seat Preference</option>
                 <option value="front">Front</option>
                 <option value="middle">Middle</option>
                 <option value="end">End</option>

@@ -35,17 +35,30 @@ export default function CustomerFoodBev() {
       <div className="topic">
         <h1>F&B</h1>
       </div>
-      {items.map((item, index) => (
-        <div key={index}>
-          <img src={item.poster} alt={`${item.description}`} />
-          <h3>Item: {item.itemNumber}</h3>
-          <p>Description: {item.description}</p>
-          <p>Price: ${item.price}</p>
-          <button className="mainBtns" onClick={addToCart}>
-            Add To cart
-          </button>
-        </div>
-      ))}
+      <div className="alignFb">
+        {items.map((item, index) => (
+          <div className="fbBox">
+            <div className="movieCard" key={index}>
+              <img
+                src={item.poster}
+                alt={`${item.description}`}
+                width={"250px"}
+                height={"280px"}
+              />
+              <div className="cardInfo">
+                <h3>Item: {item.itemNumber}</h3>
+                <div className="cardList">
+                  <p>Description: {item.description}</p>
+                  <p>Price: ${item.price}</p>
+                </div>
+              </div>
+            </div>
+            <button className="mainBtns" onClick={addToCart}>
+              Add To cart
+            </button>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

@@ -1,25 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import CustomerNavbar from "./CustomerNavbar";
-import SignedOutNavbar from "../navbar/SignedOutNavbar";
 
+import SignedOutNavbar from "../navbar/SignedOutNavbar";
+import CustomerNavbar from "./CustomerNavbar";
+
+import MovieService from "../../services/MovieService";
+
+import "../admin/user.css";
 import "./css/movie.css";
-//for movie search function
+
 import SearchIcon from "@mui/icons-material/Search";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import IconButton from "@mui/material/IconButton";
-import UserService from "../../services/UserService";
 
-export default function Movie() {
-  //for Movie search function (need to change)
-  const [customers, setCustomers] = useState([]);
-  const [currentCustomer, setCurrentCustomer] = useState(null);
-  const [currentIndex, setCurrentIndex] = useState(-1);
+export default function ListMovie() {
   const [searchMovie, setSearchMovie] = useState("");
+  const [movies, setMovies] = useState([]);
 
   useEffect(() => {
-    getCustomers();
+    getMovies();
   }, []);
 
   const onSearchChange = (e) => {
@@ -27,36 +27,38 @@ export default function Movie() {
     searchByMovie(e.target.value);
   };
 
-  const getCustomers = () => {
-    UserService.getAllCustomers()
+  const getMovies = () => {
+    MovieService.getAllMovies()
       .then((res) => {
-        setCustomers(res.data);
-        console.log(res.data);
+        setMovies(res.data);
       })
       .catch((e) => {
         console.log(e);
       });
   };
 
-  const setCustDisplay = (customer, index) => {
-    setCurrentCustomer(customer);
-    setCurrentIndex(index);
-  };
-
-  const searchByMovie = (username) => {
-    UserService.findByRoleAndUsernameContainingIgnoreCase("customer", username)
-      .then((res) => {
-        setCustomers(res.data);
-      })
-      .catch((e) => {
-        console.log("User not found");
-      });
+  const searchByMovie = (imdbId) => {
+    // if param exist
+    if (imdbId) {
+      MovieService.getSingleMovie(imdbId)
+        .then((res) => {
+          setMovies(res.data ? [res.data] : []); // render empty array if not found
+        })
+        .catch((e) => {
+          console.log("Not found");
+        });
+    } else {
+      getMovies(); // get all movies if no param
+    }
   };
 
   return (
-    <>
+    <div>
       <SignedOutNavbar />
       <CustomerNavbar />
+      <div className="topic">
+        <h1>Movies</h1>
+      </div>
       <div className="searchBar">
         <Box sx={{ display: "flex", alignItems: "flex-end" }}>
           <TextField
@@ -101,9 +103,28 @@ export default function Movie() {
           </IconButton>
         </Box>
       </div>
-      <Link to={"/login/:id/:idmovie"}>
-        <button className="mainBtns">Book Now!</button>
-      </Link>
-    </>
+      <div className="cardContainer">
+        <ul className="cardGrid">
+          {movies.map((movie, index) => (
+            <div key={index} className="movieCard">
+              <div className="movieImg">
+                <img src={movie.poster} alt={movie.title} />
+              </div>
+              <div className="cardInfo">
+                <h3>{movie.title}</h3>
+                <ul className="cardList">
+                  <li>IMDb ID: {movie.imdbId}</li>
+                  <li>Start Time: {movie.startTime}</li>
+                  <li>Rating: {movie.avgRating}</li>
+                </ul>
+              </div>
+              <Link to={`/login/staff/${movie.id}`}>
+                <button className="mainBtns">Book Now!</button>
+              </Link>
+            </div>
+          ))}
+        </ul>
+      </div>
+    </div>
   );
 }

@@ -1,60 +1,99 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
 import ManagerNavbar from "./ManagerNavbar";
 import SignedOutNavbar from "../navbar/SignedOutNavbar";
+import MovieService from "../../services/MovieService";
+import CinemaRoomService from "../../services/CinemaRoomService";
+import UploadImage from "../image/UploadImage";
+
 import "./css/createmovie.css";
 
 const CreateMovies = () => {
-    const [file, setFile] = useState(null);
-
-    /*
-    const [movie, setMovie] = useState({
-        id: null,
-        title: "",
-        description: "",
-        childticket: "",
-        studentticket: "",
-        adultticket: "",
-        elderlyticket: "",
-        agerestriction: "",
-        theatrenumber: "",
-        starttime: "",
-        duration: "",
-    });
-    */
+    const navigate = useNavigate();
 
     const [movie, setMovie] = useState({
         id: null,
         imdbId: "",
         title: "",
         poster: null,
-        reviewIds: {
-
-        },
+        reviewIds: [],
         ageRestriction: "",
         duration: "",
         startTime: "",
+        room: "",
     })
 
-    const inputRef = useRef();
-    const handleOpenFile = () => {
-        inputRef.current.click();
-    };
-
-    const handleInputFilechange = (event) => {
-        setFile(event.target.files[0]);
-    };
+    const [image, setImage] = useState(null);
 
     const handleChangeInput = (e) => {
-        const name = e.target.name; // name here means the name of the input field
-        const value = e.target.value; // value of that input field
+        const { name, value } = e.target;
 
         setMovie((prev) => {
-            return {
-                ...prev,
-                [name]: value,
+            return { 
+                ...prev, 
+                [name]: value 
             };
         });
+    };
+
+    const handleImageUpload = (imageName) => {
+        setImage(imageName);
+    }
+
+    const isEmpty = () => {
+        if (movie.imdbId === ""||
+            movie.title === "" ||
+            movie.ageRestriction === "" ||
+            movie.duration === "" ||
+            movie.startTime === "" ||
+            movie.room === "")
+            return true;
+        else return false;
+    }; 
+
+    const saveMovie = () => {
+        CinemaRoomService.findCinemaRoomByRoomNumber(movie.room)
+            .then((res) => {
+                const roomData = res.data;
+                // console.log(roomData);
+
+                if (!image) {
+                    alert("Please upload an image");
+                    return;
+                }
+            
+                if (isEmpty()) {
+                    alert("Please fill in all the details");
+                    return;
+                }
+
+                const imageURL = "http://localhost:8080/api/image/files/" + image;
+
+                const movieDetails = {
+                    imdbId: movie.imdbId,
+                    title: movie.title,
+                    poster: imageURL,
+                    reviewIds: [],
+                    ageRestriction: movie.ageRestriction,
+                    duration: movie.duration,
+                    startTime: movie.startTime,
+                    room: roomData,
+                };
+
+                MovieService.createMovie(movieDetails)
+                    .then((res) => {
+                        console.log(res.data);
+                        alert("Movie created successfully");
+                        navigate("/login/manager");
+                    })
+                    .catch((e) => {
+                        console.log(e);
+                    });
+            })
+            .catch((e) => {
+                alert("Room does not exist");
+            })
     };
     
     return (
@@ -64,23 +103,18 @@ const CreateMovies = () => {
             <div className="topic">
                 <h1>Create a new Movie</h1>
             </div>
-
-            {file && file.type.split("/")[0] === "image" && (
-                <img src={URL.createObjectURL(file)} alt="" />
-            )}
-
-            <input
-                style={{ display: "none" }}
-                type="file"
-                ref={inputRef}
-                onChange={handleInputFilechange}
-            />
-            <button className="mainBtns" onClick={handleOpenFile}>
-                Upload File
-            </button>
+            <UploadImage onImageUpload={handleImageUpload} />
 
             <div className="movieBox">
                 <div className="movieForm">
+                <input
+                    required
+                    placeholder="IMDb ID"
+                    autoComplete="false"
+                    type="text"
+                    name="imdbId"
+                    onChange={handleChangeInput}
+                />
                 <input
                     required
                     placeholder="Movie Title"
@@ -89,81 +123,46 @@ const CreateMovies = () => {
                     name="title"
                     onChange={handleChangeInput}
                 />
-                <input
-                    required
-                    placeholder="Description"
-                    autoComplete="false"
-                    type="text"
-                    name="description"
+                <select
+                    name="ageRestriction"
                     onChange={handleChangeInput}
-                />
+                    value={movie.ageRestriction}
+                >
+                    <option value="">Age Restriction</option>
+                    <option value="g">G</option>
+                    <option value="pg">PG</option>
+                    <option value="pg13">PG13</option>
+                    <option value="nc16">NC16</option>
+                    <option value="m18">M18</option>
+                    <option value="r21">R21</option>
+                </select>
                 <input
                     required
-                    placeholder="Ticket Price (child):"
-                    autoComplete="false"
-                    type="text"
-                    name="childticket"
-                    onChange={handleChangeInput}
-                />
-                <input
-                    required
-                    placeholder="Ticket Price (student):"
-                    autoComplete="false"
-                    type="text"
-                    name="studentticket"
-                    onChange={handleChangeInput}
-                />
-                <input
-                    required
-                    placeholder="Ticket Price (adult):"
-                    autoComplete="false"
-                    type="text"
-                    name="adultticket"
-                    onChange={handleChangeInput}
-                />
-                <input
-                    required
-                    placeholder="Ticket Price (elderly):"
-                    autoComplete="false"
-                    type="text"
-                    name="elderlyticket"
-                    onChange={handleChangeInput}
-                />
-                <input
-                    required
-                    placeholder="Age Restriction:"
-                    onChange={handleChangeInput}
-                    autoComplete="false"
-                    type="text"
-                    name="agerestriction"
-                />
-
-                <input
-                    required
-                    placeholder="Theatre Number:"
-                    onChange={handleChangeInput}
-                    autoComplete="false"
-                    type="text"
-                    name="theatrenumber"
-                />
-                <input
-                    required
-                    placeholder="Start Time:"
-                    onChange={handleChangeInput}
-                    autoComplete="false"
-                    type="text"
-                    name="starttime"
-                />
-                <input
-                    required
-                    placeholder="Duration:"
+                    placeholder="Duration"
                     onChange={handleChangeInput}
                     autoComplete="false"
                     type="text"
                     name="duration"
                 />
-
-                <button className="mainBtns">Create</button>
+                <input
+                    required
+                    placeholder="Start Time"
+                    onChange={handleChangeInput}
+                    autoComplete="false"
+                    type="text"
+                    name="startTime"
+                />
+                <input
+                    required
+                    placeholder="Theatre Number"
+                    onChange={handleChangeInput}
+                    autoComplete="false"
+                    type="number"
+                    name="room"
+                />
+                    <button className="mainBtns" onClick={saveMovie}>
+                        Create
+                    </button>
                 </div>
                 <div className="authBottomBox">
                 <Link to="/login/manager">

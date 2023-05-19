@@ -7,10 +7,7 @@ import SignedOutNavbar from "../navbar/SignedOutNavbar";
 import FoodDrinksService from "../../services/FoodDrinkService";
 import UploadImage from "../image/UploadImage";
 
-// import { ObjectId } from "bson";
-
 const CreateFoodDrinks = () => {
-  // export default function CreateFoodDrinks() {
   const [isCreated, setIsCreated] = useState(false);
   const navigate = useNavigate();
 
@@ -19,8 +16,8 @@ const CreateFoodDrinks = () => {
     itemNumber: "",
     description: "",
     price: "",
-    poster: null,
-  });
+    poster: null
+  })
 
   const [image, setImage] = useState(null);
 
@@ -29,24 +26,27 @@ const CreateFoodDrinks = () => {
     const value = e.target.value; // value of that input field
 
     setItem((prev) => {
-      return {
-        ...prev,
-        [name]: value,
+      return { 
+        ...prev, 
+        [name]: value 
       };
     });
   };
 
   const handleImageUpload = (imageName) => {
     setImage(imageName);
-  };
+  }
 
   const isEmpty = () => {
-    if (item.itemNumber === "" || item.description === "" || item.price === "")
+    if (item.itemNumber === "" ||
+        item.description === "" ||
+        item.price === "")
       return true;
     else return false;
-  };
+  };  
+  
 
-  const saveItem = () => {
+  const saveItem = () => { 
     if (!image) {
       alert("Please upload an image");
       return;
@@ -60,10 +60,10 @@ const CreateFoodDrinks = () => {
     const imageURL = "http://localhost:8080/api/image/files/" + image;
 
     const foodDrinksDetails = {
-      itemNumber: item.itemNumber,
-      description: item.description,
-      price: item.price,
-      poster: imageURL,
+        itemNumber: item.itemNumber,
+        description: item.description,
+        price: item.price,
+        poster: imageURL
     };
 
     FoodDrinksService.createFoodDrinks(foodDrinksDetails)
@@ -77,21 +77,7 @@ const CreateFoodDrinks = () => {
         console.log(e);
       });
   };
-
-  //   FoodDrinksService.createFoodDrinks(foodDrinksDetails)
-  //     .then((res) => {
-  //       setIsCreated(true);
-  //       console.log(res.data);
-  //       const stringid = item.id;
-  //       const objId = new ObjectId(stringid);
-  //       console.log(objId);
-  //       alert("Item created successfully");
-  //       navigate("/login/manager");
-  //     })
-  //     .catch((e) => {
-  //       console.log(e);
-  //     });
-  // };
+  
   return (
     <div>
       <SignedOutNavbar />
@@ -140,17 +126,19 @@ const CreateFoodDrinks = () => {
             name="price"
             id=""
           />
-
+          
           <button className="mainBtns" onClick={saveItem}>
             Create Item
           </button>
           <Link to="/login/manager">
-            <button className="mainBtns">Return</button>
+            <button className="mainBtns">
+              Return
+            </button>
           </Link>
         </div>
       </div>
     </div>
   );
-};
+}
 
 export default CreateFoodDrinks;

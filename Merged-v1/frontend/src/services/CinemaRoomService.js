@@ -12,6 +12,10 @@ class CinemaRoomService {
   deleteCinemaRoom(roomNumber) {
     return http.delete(`/room/${roomNumber}`);
   }
+
+  findCinemaRoomByRoomNumber(roomNumber) {
+    return http.get(`/room?roomNumber=${roomNumber}`);
+  }
 }
   
 export default new CinemaRoomService();

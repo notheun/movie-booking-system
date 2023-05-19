@@ -34,7 +34,7 @@ export default function ManagerNavbar() {
           </Link>
         </div>
       </div>
-      <div class="dropdown">
+      <div className="dropdown">
         <Link to="/login/manager/report" className="wordings">
           Generate report
         </Link>

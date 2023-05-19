@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import ManagerNavbar from "./ManagerNavbar";
 import SignedOutNavbar from "../navbar/SignedOutNavbar";
 
-import UserService from "../../services/UserService";
+import MovieService from "../../services/MovieService";
 
 import "./css/managemovie.css";
 
@@ -13,37 +13,51 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import IconButton from "@mui/material/IconButton";
 
-export default function ManageMovie() {
+const ManageMovie = () => {
   const [searchMovie, setSearchMovie] = useState("");
-  const [customers, setCustomers] = useState([]);
+  const [movies, setMovies] = useState([]);
+
   useEffect(() => {
-    getCustomers();
+    getMovies();
   }, []);
 
   const onSearchChange = (e) => {
     setSearchMovie(e.target.value);
     searchByMovie(e.target.value);
   };
-  const getCustomers = () => {
-    UserService.getAllCustomers()
+
+  const getMovies = () => {
+    MovieService.getAllMovies()
       .then((res) => {
-        setCustomers(res.data);
-        console.log(res.data);
+        setMovies(res.data);
       })
       .catch((e) => {
         console.log(e);
       });
   };
 
-  const searchByMovie = (username) => {
-    UserService.findByRoleAndUsernameContainingIgnoreCase("customer", username)
+  const searchByMovie = (imdbId) => {
+    // if param exist
+    if (imdbId) {
+      MovieService.getSingleMovie(imdbId).then((res) => {
+        setMovies(res.data ? [res.data] : []); // render empty array if not found
+      });
+    } else {
+      getMovies(); // get all movies if no param
+    }
+  };
+
+  const deleteMovie = (imdbId) => {
+    MovieService.deleteMovie(imdbId)
       .then((res) => {
-        setCustomers(res.data);
+        console.log(res.data);
+        getMovies();
       })
       .catch((e) => {
-        console.log("User not found");
+        console.log(`Failed to delete movie: ${imdbId}`);
       });
   };
+
   return (
     <div>
       <SignedOutNavbar />
@@ -51,7 +65,6 @@ export default function ManageMovie() {
       <div className="topic">
         <h1>Edit Movie</h1>
       </div>
-      {/* Movie Search Function(need to change) */}
       <div className="searchBar">
         <Box sx={{ display: "flex", alignItems: "flex-end" }}>
           <TextField
@@ -96,17 +109,38 @@ export default function ManageMovie() {
           </IconButton>
         </Box>
       </div>
+      <div className="cardContainer">
+        <ul className="cardGrid">
+          {movies.map((movie, index) => (
+            <div key={index} className="movieCard">
+              <div className="movieImg">
+                <img
+                  src={movie.poster}
+                  alt={movie.title}
+                  // width={"250px"}
+                  // height={"350px"}
+                />
+              </div>
+              <div className="cardInfo">
+                <h3>{movie.title}</h3>
+                <ul className="cardList">
+                  <li>IMDb ID: {movie.imdbId}</li>
+                  <li>Start Time: {movie.startTime}</li>
+                  <li>Rating: {movie.avgRating}</li>
+                </ul>
+              </div>
+              <button
+                className="mainBtns"
+                onClick={() => deleteMovie(movie.imdbId)}
+              >
+                Delete
+              </button>
+            </div>
+          ))}
+        </ul>
+      </div>
     </div>
   );
-}
+};
 
-// import ManagerNavbar from "./ManagerNavbar";
-// import SignedOutNavbar from "../navbar/SignedOutNavbar";
-// export default function EditMovie() {
-//   return (
-//     <div>
-//       <SignedOutNavbar />
-//       <ManagerNavbar />
-//     </div>
-//   );
-// }
+export default ManageMovie;

@@ -63,7 +63,7 @@ function App() {
           <Route exact path="/login/staff" element={<StaffMovies />}></Route>
           <Route exact path="/login/staff/checkloyaltypoints" element={<ListCustomers />}></Route>
           <Route exact path="/login/staff/checkloyaltypoints/rewards" element={<StaffRewards />}></Route>
-          <Route exact path="/login/staff/:movieid" element={<StaffBookMovie />}></Route>
+          <Route exact path="/login/staff/:imdbId" element={<StaffBookMovie />}></Route>
           <Route exact path="/login/staff/viewfb" element={<StaffFoodBev />}></Route>
           <Route exact path="/login/staff/checkout" element={<StaffCheckout />}></Route>
           <Route exact path="/login/staff/checkout/ticketid" element={<StaffTicketID />}></Route>

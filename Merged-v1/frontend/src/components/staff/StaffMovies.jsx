@@ -1,57 +1,13 @@
-/*import React, { useEffect, useState } from "react";
-import { Link, Navigate } from "react-router-dom";
-
-import UserService from "../../services/UserService";
-
-/*
-export default function ListMovie() {
-    const [movies, setMovies] = useState([]);
-
-    useEffect(() => {
-        axios.get('/api/movies') // changing ltr
-          .then(response => {
-            setMovies(response.data);
-          })
-          .catch(error => {
-            console.log(error);
-          });
-      }, []);
-
-    const handleDelete = (movieId) => {
-        axios.delete(`/api/movies/${movieId}`) // changing ltr
-          .then(response => {
-            // display existing movies after deletion
-            setMovies(movies.filter(movie => movie.id !== movieId));
-          })
-          .catch(error => {
-            console.log(error);
-          });
-    }
-
-    return (
-        <div>
-            <Link to={"/login/staff/checkloyaltypoints"}>
-                <button>View Loyalty Points</button>
-            </Link>
-            <Link to={"/login/staff/viewfb"}>
-                <button>F&B</button>
-            </Link>
-            <Link to={"/login/staff/checkticket"}>
-                <button>Check Ticket</button>
-            </Link>
-        </div>
-    )
-}
-*/
-
-
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import SignedOutNavbar from "../navbar/SignedOutNavbar";
 import StaffNavBar from "./StaffNavbar";
 
+import MovieService from "../../services/MovieService";
+
 import "../admin/user.css";
+import "./css/staffmovie.css";
 
 import SearchIcon from "@mui/icons-material/Search";
 import Box from "@mui/material/Box";
@@ -59,17 +15,43 @@ import TextField from "@mui/material/TextField";
 import IconButton from "@mui/material/IconButton";
 
 export default function ListMovie() {
-  const [movies, setMovies] = useState([]);
-  const [currentMovie, setCurrentMovie] = useState(null);
-  const [currentIndex, setCurrentIndex] = useState(-1);
   const [searchMovie, setSearchMovie] = useState("");
+  const [movies, setMovies] = useState([]);
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    getMovies();
+  }, []);
 
   const onSearchChange = (e) => {
     setSearchMovie(e.target.value);
+    searchByMovie(e.target.value);
   };
-  //Function to get the data of movies
-  const bookMovie = () => {
-    return;
+
+  const getMovies = () => {
+    MovieService.getAllMovies()
+      .then((res) => {
+        setMovies(res.data);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+
+  const searchByMovie = (imdbId) => {
+    // if param exist
+    if (imdbId) {
+      MovieService.getSingleMovie(imdbId)
+        .then((res) => {
+          setMovies(res.data ? [res.data] : []); // render empty array if not found
+        })
+        .catch((e) => {
+          console.log("Not found");
+        });
+    } else {
+      getMovies(); // get all movies if no param
+    }
   };
 
   return (
@@ -77,7 +59,7 @@ export default function ListMovie() {
       <SignedOutNavbar />
       <StaffNavBar />
       <div className="topic">
-        <h1>Movies</h1>
+        <h1>Edit Movie</h1>
       </div>
       <div className="searchBar">
         <Box sx={{ display: "flex", alignItems: "flex-end" }}>
@@ -123,11 +105,31 @@ export default function ListMovie() {
           </IconButton>
         </Box>
       </div>
-      <Link to={"/login/staff/:movieid"}>
-        <button className="mainBtns" onClick={bookMovie}>
-          Book Now!
-        </button>
-      </Link>
+      <div className="cardContainer">
+        <ul className="cardGrid">
+          {movies.map((movie, index) => (
+            <div key={index} className="movieCard">
+              <div className="movieImg">
+                <img src={movie.poster} alt={movie.title} />
+              </div>
+              <div className="cardInfo">
+                <h3>{movie.title}</h3>
+                <ul className="cardList">
+                  <li>IMDb ID: {movie.imdbId}</li>
+                  <li>Start Time: {movie.startTime}</li>
+                  <li>Rating: {movie.avgRating}</li>
+                </ul>
+              </div>
+              <Link
+                to={`/login/staff/${movie.imdbId}`}
+                onClick={() => navigate(`/login/staff/${movie.imdbId}`)}
+              >
+                <button className="mainBtns">Book Now!</button>
+              </Link>
+            </div>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }

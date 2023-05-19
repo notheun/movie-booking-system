@@ -55,6 +55,9 @@ export default function ListUser() {
   return (
     <div>
       <SignedOutNavbar />
+      <div className="topic">
+        <h1>System Admin</h1>
+      </div>
       <div>
         <Link to={"/login/admin/createuser"}>
           <button className="mainBtns">Create a new User</button>

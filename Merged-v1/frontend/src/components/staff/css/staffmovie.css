@@ -1,0 +1,59 @@
+.movieImg {
+  max-height: 400px;
+  max-width: 250px;
+  overflow: hidden;
+  /* width: 250px;
+  height: 350px; */
+}
+
+.movieImg img {
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.cardContainer li {
+  list-style: none;
+}
+
+.cardContainer {
+  margin: 16px;
+}
+
+.cardGrid {
+  margin: 2em 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-gap: 64px;
+}
+
+.cardLink {
+  text-decoration: none;
+}
+
+.movieCard:hover {
+  transform: scale(1.1);
+}
+
+.cardInfo h3 {
+  display: block;
+  overflow: visible;
+  color: #ffffff;
+  margin-top: 6px;
+}
+
+.cardList {
+  margin-top: 10px;
+}
+
+.cardList li {
+  color: #ffffff;
+  margin-top: 2px;
+  list-style: none;
+  position: relative;
+  right: 30px;
+}
+
+.cardList span {
+  color: gray;
+}

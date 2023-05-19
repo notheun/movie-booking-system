@@ -11,6 +11,7 @@ export default function SeatSelector({ numRows, numCols }) {
   };
 
   const rows = [];
+  
   for (let i = 1; i <= numRows; i++) {
     const seats = [];
     for (let j = 1; j <= numCols; j++) {
