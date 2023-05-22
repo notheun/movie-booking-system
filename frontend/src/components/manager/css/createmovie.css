@@ -36,8 +36,7 @@
   width: 100%;
 }
 
-.movieForm input,
-select {
+.movieForm input, select {
   width: 100%;
   border: none;
   outline: none;
@@ -67,19 +66,4 @@ select {
   align-items: center;
   justify-content: center;
   padding: 2rem;
-}
-.theaterBox {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  padding: 20px;
-  border: 2px dotted orange;
-  border-radius: 10px;
-}
-
-.alignTheater {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
 }

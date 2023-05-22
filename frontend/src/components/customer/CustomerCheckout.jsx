@@ -8,7 +8,6 @@ import RewardService from "../../services/RewardService";
 import FoodDrinkService from "../../services/FoodDrinkService";
 
 import "../admin/user.css";
-import CustomerNavbar from "./CustomerNavbar";
 import "../staff/css/staffcheckout.css";
 
 const CustomerCheckout = () => {
@@ -26,8 +25,11 @@ const CustomerCheckout = () => {
                 console.error("Error fetching cart:", error);
             }
         };
-        fetchCart();
-    }, [customerId]);
+    
+        if (Object.keys(cart).length === 0) {
+          fetchCart();
+        }
+    }, [customerId, cart]);
 
     const navigate = useNavigate();
 
@@ -92,6 +94,11 @@ const CustomerCheckout = () => {
         }
     }, [cart]);
 
+    const checkout = () => {
+        navigate(`/${customerId}/checkout/ticketid`);
+    }
+
+    /*
     const checkout = async () => {
         try {
           const updatedCart = {
@@ -110,6 +117,7 @@ const CustomerCheckout = () => {
           console.error("Error updating cart:", error);
         }
       };
+      */
       
     return (
         <div>

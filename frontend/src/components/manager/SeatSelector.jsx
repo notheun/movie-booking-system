@@ -11,23 +11,15 @@ export default function SeatSelector({ numRows, numCols }) {
   };
 
   const rows = [];
-
+  
   for (let i = 1; i <= numRows; i++) {
     const seats = [];
     for (let j = 1; j <= numCols; j++) {
       const seat = j;
       seats.push(
         <button
-          className="seat-colors"
           key={seat}
-          style={{
-            backgroundColor: "green",
-            color: "black",
-            fontSize: "16px",
-            width: "35px",
-            height: "35px",
-            margin: "2px",
-          }}
+          style={{ backgroundColor: "green" }}
         >
           {seat}
         </button>

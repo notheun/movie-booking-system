@@ -39,14 +39,15 @@ const CustomerMovies = () => {
       });
   };
 
-  const searchByMovie = (imdbId) => {
+  const searchByMovie = (title) => {
     // if param exist
-    if (imdbId) {
-      MovieService.findByImdbId(imdbId).then((res) => {
-        setMovies(res.data ? [res.data] : []);
-      });
+    if (title) {
+      MovieService.findByTitleContainingIgnoreCase(title)
+        .then((res) => {
+          setMovies(res.data ? [res.data] : []) 
+        });
     } else {
-      getMovies(); // get all movies if no param
+      getMovies();  // get all movies if no param
     }
   };
 
@@ -56,13 +57,13 @@ const CustomerMovies = () => {
     const customerId = localStorage.getItem("customerId");
     navigate(`/${customerId}/${imdbId}`);
   };
-
+  
   return (
     <div>
       <SignedOutNavbar />
       <CustomerNavbar />
       <div className="topic">
-        <h1>Movies</h1>
+        <h1>View Movie</h1>
       </div>
       <div className="searchBar">
         <Box sx={{ display: "flex", alignItems: "flex-end" }}>
@@ -110,32 +111,28 @@ const CustomerMovies = () => {
       </div>
       <div className="cardContainer">
         <ul className="cardGrid">
-          {movies &&
-            movies.map((movie, index) => (
-              <div key={index} className="movieCard">
-                <div className="movieImg">
-                  <img src={movie.poster} alt={movie.title} />
-                </div>
-                <div className="cardInfo">
-                  <h3>{movie.title}</h3>
-                  <ul className="cardList">
-                    <li>IMDb ID: {movie.imdbId}</li>
-                    <li>Start Time: {movie.startTime}</li>
-                    <li>Rating: {movie.avgRating}</li>
-                  </ul>
-                </div>
-                <button
-                  className="mainBtns"
-                  onClick={() => proceedBooking(movie.imdbId)}
-                >
-                  Book Now!
-                </button>
+          {movies && movies.map((movie, index) => (
+            <div key={index} className="movieCard">
+              <div className="movieImg">
+                <img src={movie.poster} alt={movie.title} />
               </div>
-            ))}
+              <div className="cardInfo">
+                <h3>{movie.title}</h3>
+                <ul className="cardList">
+                  <li>IMDb ID: {movie.imdbId}</li>
+                  <li>Start Time: {movie.startTime}</li>
+                  <li>Rating: {movie.avgRating}</li>
+                </ul>
+              </div>
+              <button className="mainBtns" onClick={() => proceedBooking(movie.imdbId)}>
+                Book Now!
+              </button>
+            </div>
+          ))}
         </ul>
       </div>
     </div>
   );
-};
+}
 
 export default CustomerMovies;

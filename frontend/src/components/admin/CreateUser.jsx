@@ -78,16 +78,16 @@ export default function CreateUser() {
     role: "",
     isActive: true,
     confirmPassword: "",
-  });
+  })
 
   const handleChangeInput = (e) => {
     const name = e.target.name; // name here means the name of the input field
     const value = e.target.value; // value of that input field
 
     setUser((prev) => {
-      return {
-        ...prev,
-        [name]: value,
+      return { 
+        ...prev, 
+        [name]: value 
       };
     });
   };
@@ -101,16 +101,15 @@ export default function CreateUser() {
   };
 
   const isEmpty = () => {
-    if (
-      user.username.trim() === "" ||
-      user.email.trim() === "" ||
-      user.role == "" ||
-      user.password.trim() == "" ||
-      user.confirmPassword.trim() == ""
-    )
+    if (user.username.trim() === "" ||
+        user.email.trim() === "" ||
+        user.role == "" ||
+        user.password.trim() == "" ||
+        user.confirmPassword.trim() == "")
       return true;
-    else return false;
-  };
+    else
+      return false;
+  }
 
   /*
   const isTaken = () => {
@@ -141,13 +140,13 @@ export default function CreateUser() {
 
     if (!isPasswordValid()) {
       alert("Password does not match");
-      return;
+      return; 
     }
 
     // if password matches, and fields not empty, createUser
     // once password matches, set undefined to remove confirmPassword from state
-    const userDetails = { ...user, confirmPassword: undefined };
-    delete userDetails.confirmPassword;
+    const userDetails = {...user, confirmPassword: undefined};
+    delete userDetails.confirmPassword; 
 
     UserService.createUser(userDetails)
       .then((res) => {
@@ -157,7 +156,7 @@ export default function CreateUser() {
           email: res.data.email,
           password: res.data.password,
           role: res.data.role,
-          isActive: res.data.isActive,
+          isActive: res.data.isActive
         });
         setIsCreated(true);
         alert("User created successfully");
@@ -186,7 +185,7 @@ export default function CreateUser() {
   return (
     <div className="loginBox">
       <div className="loginHeader">
-        <h3>Create New Users </h3>
+        <h3>Get Registered </h3>
         <div className="loginHeaderInnerBox">
           <img
             width={"45px"}
@@ -245,19 +244,21 @@ export default function CreateUser() {
           name="confirmPassword"
           id=""
         />
-
+        
         <button className="mainBtns" onClick={saveUser}>
           Create User
         </button>
         <Link to="/login/admin">
-          <button className="mainBtns">Return</button>
+          <button className="mainBtns">
+            Return
+          </button>
         </Link>
       </div>
     </div>
   );
 }
 
-/*
+  /*
   return (
     
     <div>

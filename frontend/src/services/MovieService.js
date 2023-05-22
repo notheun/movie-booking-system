@@ -17,8 +17,12 @@ class MovieService {
         return http.delete(`/movies/deletemovie/${imdbId}`);
     }
 
-    findByImdbId(imdbId) {
+    findMovieByImdbId(imdbId) {
         return http.get(`/movies/search?imdbId=${imdbId}`);
+    }
+
+    findByTitleContainingIgnoreCase(title) {
+        return http.get(`/movies/title?title=${title}`);
     }
 }
   

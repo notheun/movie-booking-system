@@ -35,8 +35,8 @@ const StaffBookMovie = () => {
     }));
   };
 
-  const getMovie = (imdbId) => {
-    MovieService.getSingleMovie(imdbId)
+  const getMovie = (movieid) => {
+    MovieService.getSingleMovie(movieid)
       .then((res) => {
         setMovie(res.data);
         getRoom(res.data.room);
@@ -47,7 +47,7 @@ const StaffBookMovie = () => {
   };
 
   const getRoom = (id) => {
-    CinemaRoomService.getRoomById(id)
+    CinemaRoomService.findCinemaRoomById(id)
       .then((res) => {
         setRoom(res.data);
       })

@@ -20,7 +20,7 @@ class CinemaRoomService {
 
   // for booking movie
   // use id to return cinemaroom
-  getRoomById(id) {
+  findCinemaRoomById(id) {
     return http.get(`/room/byid?id=${id}`);
   }
 }

@@ -39,14 +39,15 @@ export default function StaffMovies() {
       });
   };
 
-  const searchByMovie = (imdbId) => {
+  const searchByMovie = (title) => {
     // if param exist
-    if (imdbId) {
-      MovieService.findByImdbId(imdbId).then((res) => {
-        setMovies(res.data ? [res.data] : []);
-      });
+    if (title) {
+      MovieService.findByTitleContainingIgnoreCase(title)
+        .then((res) => {
+          setMovies(res.data ? [res.data] : []) 
+        });
     } else {
-      getMovies(); // get all movies if no param
+      getMovies();  // get all movies if no param
     }
   };
 
@@ -55,7 +56,7 @@ export default function StaffMovies() {
       <SignedOutNavbar />
       <StaffNavBar />
       <div className="topic">
-        <h1>Movies</h1>
+        <h1>View Movie</h1>
       </div>
       <div className="searchBar">
         <Box sx={{ display: "flex", alignItems: "flex-end" }}>
@@ -116,9 +117,9 @@ export default function StaffMovies() {
                   <li>Rating: {movie.avgRating}</li>
                 </ul>
               </div>
-              <Link onClick={() => navigate(`/login/staff/${movie.imdbId}`)}>
-                <button className="mainBtns">Book Now!</button>
-              </Link>
+                <button className="mainBtns" onClick={() => navigate(`/login/staff/${movie.imdbId}`)}>
+                  Book Now!
+                </button>
             </div>
           ))}
         </ul>

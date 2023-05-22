@@ -49,11 +49,6 @@ export default function SeatSelector({ numRows, numCols, onSeatSelection }) {
           key={seat}
           onClick={() => handleSeatClick(i, seat)}
           style={{
-            color: "black",
-            fontSize: "16px",
-            width: "35px",
-            height: "35px",
-            margin: "2px",
             backgroundColor: selectedSeats.some(
               (selectedSeat) =>
                 selectedSeat.row === i && selectedSeat.col === seat
@@ -79,7 +74,7 @@ export default function SeatSelector({ numRows, numCols, onSeatSelection }) {
   }
 
   return (
-    <div className="middle">
+    <div>
       <div className="screen">
         <h2>SCREEN</h2>
       </div>

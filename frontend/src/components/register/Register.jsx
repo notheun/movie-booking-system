@@ -39,18 +39,18 @@ const Register = () => {
   const handleDateChange = (e) => {
     const date = e.target.value;
     setDate(date);
-
+  
     const [year, month, day] = date.split("-");
-
+  
     setUser((prev) => {
       return {
         ...prev,
         birthYear: year,
         birthMonth: month,
         birthDay: day,
-      };
+      }
     });
-  };
+  }  
 
   const handleDateFocus = (e) => {
     if (e.currentTarget.value === "") {
@@ -89,7 +89,7 @@ const Register = () => {
       user.birthYear === "" ||
       user.birthMonth === "" ||
       user.birthDay === "" ||
-      user.seatPref === ""
+      user.seatPref === "" 
     )
       return true;
     else return false;
@@ -190,15 +190,14 @@ const Register = () => {
           value={user.email}
           onChange={handleChangeInput}
         />
-        <select
-          name="seatPref"
+        <select 
+          name="seatPref" 
           onChange={handleChangeInput}
           value={user.seatPref}
         >
-          {/* <option disabled selected>
+          <option disabled selected>
             Seat Preference
-          </option> */}
-          <option hidden>Seat Preference</option>
+          </option>
           <option value="front">Front</option>
           <option value="middle">Middle</option>
           <option value="end">End</option>

@@ -40,11 +40,13 @@ const ManageMovie = () => {
   const searchByMovie = (imdbId) => {
     // if param exist
     if (imdbId) {
-      MovieService.getSingleMovie(imdbId).then((res) => {
-        setMovies(res.data ? [res.data] : []); // render empty array if not found
-      });
+      MovieService.findByImdbId(imdbId)
+        .then((res) => {
+          console.log(res);
+          setMovies(res.data ? [res.data] : []) // render empty array if not found
+        });
     } else {
-      getMovies(); // get all movies if no param
+      getMovies();  // get all movies if no param
     }
   };
 
@@ -54,9 +56,7 @@ const ManageMovie = () => {
         alert(`Movie ${imdbId} deleted successfully`);
         getMovies();
 
-        const imageURL = movies.find(
-          (movies) => movies.imdbId === imdbId
-        ).poster;
+        const imageURL = movies.find(movies => movies.imdbId === imdbId).poster;
         if (imageURL) {
           const filename = imageURL.split("/").pop();
           ImageService.delete(filename)
@@ -66,7 +66,7 @@ const ManageMovie = () => {
             })
             .catch((e) => {
               console.log("Failed to delete image: ", e);
-            });
+            })
         } else {
           console.log("No image associated with the movie");
           getMovies();
@@ -74,8 +74,8 @@ const ManageMovie = () => {
       })
       .catch((e) => {
         console.log(`Failed to delete movie: ${imdbId}`);
-      });
-  };
+      })
+  }
 
   return (
     <div>
@@ -130,33 +130,26 @@ const ManageMovie = () => {
       </div>
       <div className="cardContainer">
         <ul className="cardGrid">
-          {movies &&
-            movies.map((movie, index) => (
-              <div key={index} className="movieCard">
-                <div className="movieImg">
-                  <img src={movie.poster} alt={movie.title} />
-                </div>
-                <div className="cardInfo">
-                  <h3>{movie.title}</h3>
-                  <ul className="cardList">
-                    <li>IMDb ID: {movie.imdbId}</li>
-                    <li>Start Time: {movie.startTime}</li>
-                    <li>Rating: {movie.avgRating}</li>
-                  </ul>
-                </div>
-
-                <button
-                  className="mainBtns"
-                  onClick={() => deleteMovie(movie.imdbId)}
-                >
-                  Delete Movie
-                </button>
+          {movies.map((movie, index) => (
+            <div key={index} className="movieCard">
+              <div className="movieImg">
+                <img src={movie.poster} alt={movie.title} />
               </div>
-            ))}
+              <div className="cardInfo">
+                <h3>{movie.title}</h3>
+                <ul className="cardList">
+                  <li>IMDb ID: {movie.imdbId}</li>
+                  <li>Start Time: {movie.startTime}</li>
+                  <li>Rating: {movie.avgRating}</li>
+                </ul>
+              </div>
+              <button onClick={() => deleteMovie(movie.imdbId)}>Delete</button>
+            </div>
+          ))}
         </ul>
       </div>
     </div>
   );
-};
+}
 
 export default ManageMovie;
